@@ -6,10 +6,10 @@
 - **TODO.md** contains a todo list of things we need to do.  
 
 ### Student Information
-|      NAME     |MUN ID| GITHUB USERNAME |   MUN EMAIL  |
-|---------------|------|-----------------|--------------|
-|Brandon Hardatt|bvh658|BrandonHardatt   | bvh658@mun.ca|
-|?              |?     |                 | ?@mun.ca|
+|      NAME     |MUN ID | GITHUB USERNAME |   MUN EMAIL  |
+|---------------|-------|-----------------|--------------|
+|Brandon Hardatt|bvh658 |BrandonHardatt   |bvh658@mun.ca |
+|Drew Griffiths |djamesg|DJGriffi         |djamesg@mun.ca|
 
 ### Proposal  
 - A project description goes here. 
