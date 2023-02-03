@@ -10,4 +10,4 @@
 - Photography  
 - eCommerce 
 - Youtube clone 
-- A website that hosts ten's of thousands of recipes (I may have found a usable data set already) that allows you to randomly generate a weekly meal plan on user provided specifics, ie # of beef dishes, # of chicken dishes, etc in a week. Site will also provide a grocery list of items from the recipes. Maybe also genereate list of recipes with ingredients already on-hand. Will also provided printable recipes. If you can't tell, I really dislike doing meal plans because I am old and would love to be able to automate this task.
+- A website that hosts ten's of thousands of recipes (I may have found a usable data set already) that allows you to randomly generate a weekly meal plan on user provided specifics, ie # of beef dishes, # of chicken dishes, etc in a week. Site will also provide a grocery list of items from the recipes. Maybe also generate list of recipes with ingredients already on-hand. Will also provided printable recipes. If you can't tell, I really dislike doing meal plans because I am old and would love to be able to automate this task.
