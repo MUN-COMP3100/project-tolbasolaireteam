@@ -16,7 +16,7 @@ From the data set the website will generate personalized weekly meal plans based
 - etc. 
 
 |Name|Description|End|Deliver|Who|
-|-----|-----|-----|-----|-----|
+|-|-|-|-|-|
 |Sign-up|User signs up to site|Server|Yes|TBD
 |Login|User login and profiles|Server|Yes|TBD
 |Random meal preferences|User sets meal preference for the random meal generator|???|Yes|TBD
@@ -33,6 +33,8 @@ From the data set the website will generate personalized weekly meal plans based
 |Meal-preferences|User sets meal preference for the week|???|Yes|TBD
 |Share meal plan|User can share meal plan via email|Server|Yes|TBD
 |Share grocery list|User can share grocery list via email|Server|Yes|TBD
+|Review|Leave a review for a recipe|Client|Maybe|TBD
+|Omit recipe|Allows user to omit recipes from being added to meal plan|Client|Maybe|TBD
 
 
 ### User-Friendly
