@@ -1,8 +1,9 @@
 ### Getting Started
-- [ ] Brainstorm other possible website ideas 
-- [ ] Decide upon project idea get prof permission if required 
+- [x] Brainstorm other possible website ideas 
+- [x] Decide upon project idea 
+- [ ] Get prof permission 
 - [ ] Submit project proposal as `proposal.md`
-- [ ] Fill out team information
+- [x] Fill out team information
 - [ ] Fill out the features table
 
 
