@@ -12,12 +12,12 @@ console.log(count);
 
 
 // function that acts like python's enumerate()
-// function* enumerate (iterable, start = 0)
-// { let i = start
-//   for (const x of iterable)
-//     yield [i++, x]
+// function* enumerate (iterable, start = 0) { 
+//     let i = start
+//     for (const x of iterable)
+//         yield [i++, x]
 // }
 
 // use example
 // for (const [i, x] of enumerate(data))
-//   console.log(i, x.name)
+//     console.log(i, x.name)
