@@ -22,3 +22,6 @@ See **proposal.md**
 
 You should elaborate on any of the features that are not self-explanatory, and particularly on Deliver=YES features so it is clear how extensive an implementation you anticipate. This will allow some idea of the coding effort involved. Use the feature names as sub-section headings to describe each feature. If you already know of a tool, module, library or express capability that will help your implementation you can include that information.
 
+### Setup
+npm init 
+npm install validator
