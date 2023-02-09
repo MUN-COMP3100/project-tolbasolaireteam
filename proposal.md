@@ -1,7 +1,7 @@
 # Project Proposal 
 
 ### Dataset
-The website will be a cooking website. Using this [dataset](https://eightportions.com/datasets/Recipes/) scraped from various websites containing approximately  125,000 recipes. 
+The website will be a cooking website. Using the [dataset](https://github.com/shaansubbaiah/allrecipes-scraper.git) scraped from allrecipes.com containing approximately 35,500 recipes. 
 
 ### How the dataset will be used 
 From the data set the website will generate personalized weekly meal plans based on user-specified preferences. 
