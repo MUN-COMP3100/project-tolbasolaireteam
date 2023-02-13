@@ -20,3 +20,11 @@
 |Share grocery list|User can share grocery list via email|Server|Yes|TBD
 |Review|Leave a review for a recipe|Client|Maybe|TBD
 |Omit recipe|Allows user to omit recipes from being added to meal plan|Client|Maybe|TBD
+|Add recipe to database|-|-|-|-|
+|Alter recipe|-|-|-|-|
+|Display monthly calendar|-|-|-|-|
+|Add recipe to monthly calendar|-|-|-|-|
+|Remove recipe from monthly calendar|-|-|-|-|
+|Switch days monthly calendar|-|-|-|-|
+|Google calendar sync|-|-|-|-|
+
