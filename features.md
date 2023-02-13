@@ -22,7 +22,7 @@
 |Review|Leave a review for a recipe|Client|Maybe|TBD
 |Omit recipe|Allows user to omit recipes from being added to meal plan|Client|Maybe|TBD
 |Add recipe to database|Add full recipe to current database|Server|-|-|
-|Add user notes to recipe|Add user notes to a recipe that are only viewable by user|Server|-|-|
+|Add user notes to recipe|Add user notes to a recipe that are only viewable by user|Client|-|-|
 |Display monthly calendar|Display a monthly calendar|Client|-|-|
 |Add recipe to monthly calendar|Manually add a recipe to the monthly calendar|Client|-|-|
 |Remove recipe from monthly calendar|Manually remove a specific recipe from monthly calendar|Client|-|-|
