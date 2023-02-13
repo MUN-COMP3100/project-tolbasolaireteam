@@ -13,7 +13,7 @@ From the data set the website will generate personalized weekly meal plans based
 - Users will be able to query for dishes and add them to their weekly stack
 - Generate a weekly grocery list based on the current inventory in the household and the required ingredient for the week. 
 - Generate recipes with the ingredients found at home
-- See **features.md** for a more extensive list of features
+- See [**features.md**](./features.md) for a more extensive list of features
 
 ### User-Friendly
 The website will be designed with a clean, intuitive, and user-friendly interface, making it easy for users of all ages to navigate and find the information they need.    
