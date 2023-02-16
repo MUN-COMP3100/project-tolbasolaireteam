@@ -9,6 +9,9 @@
   "author": "tolba solaire",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.2",
+    "got": "^12.5.3",
+    "mongodb": "^5.0.1",
     "validator": "^13.9.0"
   }
 }
