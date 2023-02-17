@@ -1,14 +1,22 @@
 import { readFileSync } from 'fs';
-const file = readFileSync('./recipeList2.0.json', 'utf-8');
-const data = JSON.parse(file);
-let count = 0;
-data.forEach((recipe) => 
-{
-    console.log(recipe.name); 
-    count += 1; 
+import { client, createRecipe, createMultipleRecipes, listDatabases, findRecipeByIngredient } from './mongo.mjs';
+
+let ingredient = 'beef'
+findRecipeByIngredient(client, ingredient).then((result) => {
+    console.log(result.length);
 });
 
-console.log(count);
+
+// const file = readFileSync('./recipeList2.0.json', 'utf-8');
+// const data = JSON.parse(file);
+// let count = 0;
+// data.forEach((recipe) => 
+// {
+//     console.log(recipe.name); 
+//     count += 1; 
+// });
+
+// console.log(count);
 
 
 // function that acts like python's enumerate()
