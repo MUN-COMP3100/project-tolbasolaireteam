@@ -42,10 +42,11 @@ export async function createMultipleRecipes(client, newRecipes) {
     }
 }
 
-export async function findRecipeByIngredient(client, ingredient) {
+export async function findRecipeByIngredient(client, ingredient, limit = 10) {
     try {
         await client.connect();
-        const result = await client.db("recipesData").collection("recipes").find({ingredients: {$regex: ingredient}}).toArray();
+        const cursor = await client.db("recipesData").collection("recipes").find({ingredients: {$regex: ingredient}}).limit(limit);
+        const result = await cursor.toArray();
         return result;
     } catch (e) {
         console.error(e);
@@ -53,3 +54,96 @@ export async function findRecipeByIngredient(client, ingredient) {
         await client.close();
     }
 }
+
+export async function findRecipeByName(client, name, limit = 10) {
+    try {
+        await client.connect();
+        const cursor = await client.db("recipesData").collection("recipes").find({name: {$regex: name}}).limit(limit);
+        const result = await cursor.toArray();
+        return result;
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+export async function findRecipeByCategory(client, category, limit = 10) {
+    try {
+        await client.connect();
+        const cursor = await client.db("recipesData").collection("recipes").find({category: {$regex: category}}).limit(limit);
+        const result = await cursor.toArray();
+        return result;
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+export async function findRecipeByCuisine(client, cuisine, limit = 10) {
+    try {
+        await client.connect();
+        const cursor = await client.db("recipesData").collection("recipes").find({cuisine: {$regex: cuisine}}).limit(limit);
+        const result = await cursor.toArray();
+        return result;
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+export async function findRecipeByTime(client, time, limit = 10) {
+    try {
+        await client.connect();
+        const cursor = await client.db("recipesData").collection("recipes").find({total: {$regex: time}}).limit(limit);
+        const result = await cursor.toArray();
+        return result;
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+export async function findRecipeByRating(client, rating, limit = 10) {
+    try {
+        await client.connect();
+        const cursor = await client.db("recipesData").collection("recipes").find({rating: {$gte: rating}}).limit(limit);
+        const result = await cursor.toArray();
+        return result;
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+export async function findRecipeByCalories(client, calories, limit = 10) {
+    try {
+        await client.connect();
+        const cursor = await client.db("recipesData").collection("recipes").find({calories: {$lte: calories}}).limit(limit);
+        const result = await cursor.toArray();
+        return result;
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+export async function findRecipeByFat(client, fat, limit = 10) {
+    try {
+        await client.connect();
+        const cursor = await client.db("recipesData").collection("recipes").find({fat_g: {$lte: fat}}).limit(limit);
+        const result = await cursor.toArray();
+        return result;
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+}
+
+
