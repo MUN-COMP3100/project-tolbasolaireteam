@@ -1,8 +1,8 @@
 import { readFileSync } from 'fs';
-import { client, createRecipe, createMultipleRecipes, listDatabases, findRecipeByIngredient } from './mongo.mjs';
+import * as mongo from './mongo.mjs';
 
 let ingredient = 'beef'
-findRecipeByIngredient(client, ingredient).then((result) => {
+mongo.findRecipeByIngredient(mongo.client, ingredient).then((result) => {
     console.log(result.length);
 });
 
