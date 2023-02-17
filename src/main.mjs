@@ -4,8 +4,16 @@ import * as mongo from './mongo.mjs';
 let ingredient = 'beef'
 
 // return a list of recipes that contain the ingredient beef and store in a variable named arr
-let arr = await mongo.findRecipeByIngredient(mongo.client, ingredient);
+let arr = await mongo.findRecipeByIngredient(mongo.client, ingredient, 3);
 console.log(arr);
+
+// call anonymous function
+(async () => {
+    let category = "side-dish"
+    let arr = await mongo.findRecipeByCategory(mongo.client, category, 3);
+    console.log(arr);
+})();
+
 
 // const file = readFileSync('./recipeList2.0.json', 'utf-8');
 // const data = JSON.parse(file);

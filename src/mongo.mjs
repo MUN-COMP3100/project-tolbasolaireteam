@@ -47,7 +47,7 @@ export async function findRecipeByIngredient(client, ingredient, limit = 10) {
         await client.connect();
         const cursor = await client.db("recipesData").collection("recipes").find({ingredients: {$regex: ingredient}}).limit(limit);
         const result = await cursor.toArray();
-        return Promise.resolve(result);
+        return result;
     } catch (e) {
         console.error(e);
     } finally {
