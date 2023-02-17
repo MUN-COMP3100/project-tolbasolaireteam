@@ -2,10 +2,10 @@ import { readFileSync } from 'fs';
 import * as mongo from './mongo.mjs';
 
 let ingredient = 'beef'
-mongo.findRecipeByIngredient(mongo.client, ingredient).then((result) => {
-    console.log(result.length);
-});
 
+// return a list of recipes that contain the ingredient beef and store in a variable named arr
+let arr = await mongo.findRecipeByIngredient(mongo.client, ingredient);
+console.log(arr);
 
 // const file = readFileSync('./recipeList2.0.json', 'utf-8');
 // const data = JSON.parse(file);
