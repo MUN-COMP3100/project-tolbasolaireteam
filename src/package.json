@@ -4,14 +4,18 @@
   "description": "cooking website",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.mjs"
   },
   "author": "tolba solaire",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "got": "^12.5.3",
     "mongodb": "^5.0.1",
+    "mongoose": "^6.9.2",
     "validator": "^13.9.0"
   }
 }

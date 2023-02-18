@@ -1,8 +1,10 @@
 import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
 
-const URI = 'mongodb+srv://djamesg:ow4g2YAVuUWgNOJp@cluster0.nat73ng.mongodb.net/recipesData?retryWrites=true&w=majority'
-export const client = new MongoClient(URI);
+dotenv.config();
 
+const URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.nat73ng.mongodb.net/recipesData?retryWrites=true&w=majority`;
+export const CLIENT = new MongoClient(URI);
 
 export async function listDatabases(client) {
     try {
