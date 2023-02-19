@@ -4,8 +4,8 @@ import { USERS } from './users.mjs';
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+mongoose.set('strictQuery', true);
 dotenv.config();
-
 
 // let ingredient = 'beef'
 
@@ -25,11 +25,11 @@ const mongoString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_P
 mongoose.connect(mongoString, {useNewUrlParser: true})
 
 mongoose.connection.on("error", function(error) {
-  console.log(error)
+    console.log(error);
 })
 
 mongoose.connection.on("open", function() {
-  console.log("Connected to MongoDB database.")
+    console.log("Connected to MongoDB database.");
 })
 
 // create a new user using the schema from users.mjs
