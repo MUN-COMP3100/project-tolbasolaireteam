@@ -4,8 +4,8 @@ import { USERS } from './users.mjs';
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+mongoose.set('strictQuery', true);
 dotenv.config();
-
 
 // let ingredient = 'beef'
 
@@ -20,16 +20,19 @@ dotenv.config();
 //     console.log(arr);
 // })();
 
+
 const mongoString = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.nat73ng.mongodb.net/recipesData?retryWrites=true&w=majority`;
 
-mongoose.connect(mongoString, {useNewUrlParser: true})
+// use this mongoString when using macbook
+// const mongoString = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ac-od9lxki-shard-00-00.nat73ng.mongodb.net:27017,ac-od9lxki-shard-00-01.nat73ng.mongodb.net:27017,ac-od9lxki-shard-00-02.nat73ng.mongodb.net:27017/?ssl=true&replicaSet=atlas-vgx94a-shard-0&authSource=admin&retryWrites=true&w=majority`;
+mongoose.connect(mongoString, {useNewUrlParser: true, useUnifiedTopology: true});
 
 mongoose.connection.on("error", function(error) {
-  console.log(error)
+    console.log(error);
 })
 
 mongoose.connection.on("open", function() {
-  console.log("Connected to MongoDB database.")
+    console.log("Connected to MongoDB database.");
 })
 
 // create a new user using the schema from users.mjs
@@ -46,10 +49,12 @@ async function saveUser() {
     try {
         await newUser.save();
         console.log("User saved to database.");
-    } catch (error) {
+    } 
+    catch (error) {
         console.log(error);
-    } finally {
-        mongoose.connection.close();
+    } 
+    finally {
+        await mongoose.connection.close();
     }
 }
 
@@ -66,10 +71,12 @@ async function saveUser() {
         } else {
             console.log("User not found.");
         }
-    } catch (error) {
+    } 
+    catch (error) {
         console.log(error);
-    } finally {
-        mongoose.connection.close();
+    } 
+    finally {
+       await mongoose.connection.close();
     }
 })();
 
