@@ -25,3 +25,7 @@ You should elaborate on any of the features that are not self-explanatory, and p
 ### Setup
 npm init 
 npm install validator
+
+### Attribution
+The following resources were used to help with the development of this project:
+- [Dave Grey's Express Tutorial](https://www.youtube.com/watch?v=JZXQ455OT3A&list=PL0Zuz27SZ-6PFkIxaJ6Xx_X46avTM1aYw&index=1)

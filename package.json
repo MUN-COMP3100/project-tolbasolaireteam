@@ -1,7 +1,7 @@
 {
-  "name": "basic_server_boilerplate",
+  "name": "recipe-server",
   "version": "1.0.0",
-  "description": "✅ [Check out my YouTube Channel with all of my tutorials](https://www.youtube.com/DaveGrayTeachesCode).",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node server.mjs",
