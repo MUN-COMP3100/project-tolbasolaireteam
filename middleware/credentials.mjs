@@ -1,5 +1,6 @@
 import { allowedOrigins } from '../config/allowedOrigins.mjs';
 
+// needed for CORS
 export const credentials = (req, res, next) => {
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
