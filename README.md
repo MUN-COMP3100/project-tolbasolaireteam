@@ -13,8 +13,8 @@
 
 ### Proposal  
 - A cooking website that allows users to manage their weekly grocery shopping and provides them with recipes cooking.
-See **proposal.md**
-
+See **proposal.md** for more details.
+This project has been approved by the instructor.
 ### Project Feature Table
 - See **features.md** 
 
@@ -22,9 +22,9 @@ See **proposal.md**
 
 You should elaborate on any of the features that are not self-explanatory, and particularly on Deliver=YES features so it is clear how extensive an implementation you anticipate. This will allow some idea of the coding effort involved. Use the feature names as sub-section headings to describe each feature. If you already know of a tool, module, library or express capability that will help your implementation you can include that information.
 
-### Setup
-npm init 
-npm install validator
+### Setup (run these commands in the root directory of the project)
+- npm init 
+- npm install
 
 ### Attribution
 The following resources were used to help with the development of this project:

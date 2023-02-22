@@ -1,7 +1,7 @@
 ### Getting Started
 - [x] Brainstorm other possible website ideas 
 - [x] Decide upon project idea 
-- [ ] Get prof permission 
+- [x] Get prof permission 
 - [ ] Submit project proposal as `proposal.md`
 - [x] Fill out team information
 - [ ] Fill out the features table
