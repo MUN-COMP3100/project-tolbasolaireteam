@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import * as mongo from './mongo.mjs';
-import { USERS } from './users.mjs';
+import { user } from './users.mjs';
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
@@ -53,32 +53,45 @@ async function saveUser() {
     catch (error) {
         console.log(error);
     } 
-    finally {
-        await mongoose.connection.close();
-    }
 }
 
 // saveUser();
 
 // find a user using mongoose by their username and change their password
-(async() => {
+// (async() => {
+//     try {
+//         let newUser = await USERS.findOne({username: "1234"}).exec();
+//         // check if the user exists
+//         if (newUser) {
+//             await newUser.save();
+//             console.log("User saved to database.");
+//         } else {
+//             console.log("User not found.");
+//         }
+//     } 
+//     catch (error) {
+//         console.log(error);
+//     } 
+// })();
+
+// function add a user to the database using schema from users.mjs
+async function addUser(firstName, lastName, email, username, password) {
     try {
-        let newUser = await USERS.findOne({username: "1234"}).exec();
-        // check if the user exists
-        if (newUser) {
-            await newUser.save();
-            console.log("User saved to database.");
-        } else {
-            console.log("User not found.");
-        }
-    } 
+        const newUser = new USERS({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            username: username,
+            password: password
+        })
+        let existingUser = 
+        await newUser.save();
+        console.log("User saved to database.");
+    }
     catch (error) {
         console.log(error);
-    } 
-    finally {
-       await mongoose.connection.close();
     }
-})();
+}
 
 
 

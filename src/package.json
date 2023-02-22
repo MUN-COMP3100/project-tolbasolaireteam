@@ -4,8 +4,8 @@
   "description": "cooking website",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.mjs"
+    "start": "node main.mjs",
+    "dev": "nodemon main.mjs"
   },
   "author": "tolba solaire",
   "license": "ISC",
@@ -17,5 +17,8 @@
     "mongodb": "^5.0.1",
     "mongoose": "^6.9.2",
     "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

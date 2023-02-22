@@ -2,11 +2,11 @@ import mongoose from "mongoose"
 import bcrypt from "bcryptjs"
 
 const USER_SCHEMA = new mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    email: String,
-    username: String,
-    password: String
+    firstName: {type: String, required: true},
+    lastName: {type: String, required: true},
+    email: {type: String, required: true},
+    username: {type: String, required: true},
+    password: {type: String, required: true},
 })
 
 // an async/await mongoose pre middleware function with a try/catch block to salt and hash the password before saving the user to the database
@@ -33,8 +33,10 @@ USER_SCHEMA.methods.isValidPassword = async function(newPassword) {
     }
 }
 
+// add method to save user to database
 
-export const USERS = mongoose.model("users", USER_SCHEMA);
+
+export const user = mongoose.model("user", USER_SCHEMA);
 
 
 
