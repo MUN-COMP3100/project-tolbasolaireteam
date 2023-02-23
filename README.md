@@ -24,7 +24,7 @@ You should elaborate on any of the features that are not self-explanatory, and p
 
 ### Setup (run these commands in the root directory of the project)
 - npm init 
-- npm install
+- npm install dotenv express cors mongodb mongoose cookie-parser validator
 
 ### Attribution
 The following resources were used to help with the development of this project:
