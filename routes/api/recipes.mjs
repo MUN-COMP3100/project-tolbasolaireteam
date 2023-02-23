@@ -6,10 +6,10 @@ import { verifyRoles } from '../../middleware/verifyRoles.mjs';
 export const router = express.Router();
 
 router.route('/')
-    .get(recipesController.getAllRecipes)
+    .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), recipesController.getAllRecipes)
     .post(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), recipesController.createNewRecipe)
     .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), recipesController.updateRecipe)
     .delete(verifyRoles(ROLES_LIST.Admin), recipesController.deleteRecipe);
 
 router.route('/:ingredients')
-    .get(recipesController.findRecipeByIngredient);
+    .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor, ROLES_LIST.User), recipesController.findRecipeByIngredient);
