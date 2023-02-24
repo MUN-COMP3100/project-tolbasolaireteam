@@ -57,52 +57,65 @@ In conclusion, the website that we propose will provide a convenient and efficie
 |Find recipe by salt content|Find recipe by sodium/serving content|Server|Yes|Drew
 |Find recipe by calories|Find recipe by calories/serving content|Server|Yes|Brandon
 
-### DESCRIPTION OF GUARANTEED DELIVERABLES  
+## DESCRIPTION OF GUARANTEED DELIVERABLES  
 
-#### Sign-up
-User signs up to site with a valid email or google account 
-#### Login
-User login and profiles
-#### Random meal preferences
-User sets meal preference for the random meal generator
-#### Manual planner
-User can search recipes and make their own meal plan
-#### Recipe-finder-type of dish
-Provide a list of recipes based on type of dish, ie beef, chicken, etc
-#### Recipe-finder-type of ingredients on hand
-Provide a list of recipes based on inputted ingredients
-#### Recipe card
-<p align="center">
-  <img 
-  src="ui_sketches\Recipe_Card.png" 
-  alt="A cute cat" 
-  width="500"
-  >
-</p>
+**Sign-up:**  
+User signs up to site with a valid email address and password. If the user is a unique user, i.e. there is no user already stored in the database with the same email address, the user info will be stored in a database.  
 
-Display the recipe instructions of chosen recipe. Users can add this to their meal plan 
-#### Grocery list
-Generate grocery list based meal plan
-#### Display grocery list
-Display the generated grocery list in a categorical sorted order(maybe)
-#### Add to grocery list
-User can add items from grocery list
-#### Remove form grocery list
+**Login:**  
+User logs in with their email and password. If there is an email in the database that matches the one entered the stored user password will be retrieved and compared to the password entered. The user will stayed logged in via refresh tokens until they log out.  
+
+**Random meal preferences:**  
+User will set meal preferences for the random meal generator. The user will be able to select the number of meals they want for the week, the number of each type of meal they want, and the type of meals they want.  
+
+**Manual meal planner:**  
+User can search recipes and make their own meal plan. The user will be able to search for recipes by name, type of dish, and ingredients. The user will be able to add recipes to their meal plan and remove recipes from their meal plan.  
+
+**Recipe finder by type of dish:**  
+Provide a list of recipes based on type of dish, ie beef, chicken, etc. The user will be able to select the type of dish they want and the number of recipes they want.
+
+**Recipe finder by type of ingredients on hand:**
+Provide a list of recipes based on inputted ingredients. The user will be able to input the ingredients they have on hand and the number of recipes they want.
+
+**Recipe card:**  
+Display the recipe instructions of chosen recipe. The user will be able to view the recipe instructions of the recipe they selected. They will also be able to add the recipe to their meal plan, return to the search, go to the home page, or logout. Below is an exmaple of a recipe card.
+
+<img align="left" src="ui_sketches\Recipe_Card.png" alt="A cute cat" width="800" height="600">
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
+
+**Generate grocery list:**  
+The app will be able to generate a grocery list based on the ingredients listed in the recipes in the user's meal plan. 
+
+**Display grocery list:**  
+The user will be able to view the generated grocery list in a categorical sorted order.
+
+**Add to grocery list:**  
+The user will be able to manually add items from grocery list.
+
+**Remove form grocery list:**  
 User can remove items from grocery list
-#### Number of dishes
-User sets the number of certain dishes they want for the week, ie number of beef and chicken dishes
-#### Drag
-Drag and drop recipes to change order of random meal plan
-#### Calendar
-A weekly calendar to display meals
-#### Meal-preferences
-User sets meal preference for the week
-#### Share meal plan
-User can share meal plan via email
-#### Share grocery list
-User can share grocery list via email
 
-#### Find recipe
+**Number of dishes:**  
+User sets the number of certain dishes they want for the week, ie number of beef and chicken dishes
+
+**Drag:**  
+Drag and drop recipes to change order of random/manual meal plan
+
+**Calendar:**  
+A weekly calendar to display meals populated by random meal generator or manual meal planner. It will also display the grocery list that can later be viewed in the grocery list page.
+
+**Meal-preferences:**  
+User sets meal preference for the week. This can be either by type of dish, ingredients, sodium/sugar content, calories, or a combination of these.
+
+**Share meal plan:**  
+User can share meal plan with someone else via email
+
+**Share grocery list:**  
+User can share grocery list with someone else via email
+
+**Find recipe:**  
 Advanced searches should let users find recipes by:
 - total cooking time
 - sugar content
@@ -112,4 +125,5 @@ Advanced searches should let users find recipes by:
 - calories
 - calories/serving content
 - and more!
-Showing the results for recipes that meet their search parameters.
+Showing the results for recipes that meet their search parameters.  
+The user can also set a maximum number of results to display.
