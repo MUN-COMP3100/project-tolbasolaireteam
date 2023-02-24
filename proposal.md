@@ -60,12 +60,25 @@ In conclusion, the website that we propose will provide a convenient and efficie
 |Find recipe by calories|Find recipe by calories/serving content|Server|Yes|Brandon
 
 ## DESCRIPTION OF GUARANTEED DELIVERABLES  
+**Landing Page**
+<img align="left" src="ui_sketches\fig1.png" alt="A cute cat" width="800" height="600">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
 
 **Sign-up:**  
+<img align="left" src="ui_sketches\fig2.png" alt="A cute cat" width="800" height="600">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
+<img align="left" src="ui_sketches\fig3.png" alt="A cute cat" width="800" height="600">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
+
 User signs up to site with a valid email address and password. If the user is a unique user, i.e. there is no user already stored in the database with the same email address, the user info will be stored in a database.  
 
 **Login:**  
 User logs in with their email and password. If there is an email in the database that matches the one entered the stored user password will be retrieved and compared to the password entered. The user will stayed logged in via refresh tokens until they log out.  
+
+Once logged in they will have several options to choose from
+<img align="left" src="ui_sketches\fig7.png" alt="A cute cat" width="800" height="600">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
+
 
 **Random meal preferences:**  
 User will set meal preferences for the random meal generator. The user will be able to select the number of meals they want for the week, the number of each type of meal they want, and the type of meals they want.  
@@ -74,6 +87,9 @@ User will set meal preferences for the random meal generator. The user will be a
 User can search recipes and make their own meal plan. The user will be able to search for recipes by name, type of dish, and ingredients. The user will be able to add recipes to their meal plan and remove recipes from their meal plan.  
 
 **Recipe finder by type of dish:**  
+<img align="left" src="ui_sketches\fig5.png" alt="A cute cat" width="800" height="600">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
+
 Provide a list of recipes based on type of dish, ie beef, chicken, etc. The user will be able to select the type of dish they want and the number of recipes they want.
 
 **Recipe finder by type of ingredients on hand:**
@@ -82,9 +98,7 @@ Provide a list of recipes based on inputted ingredients. The user will be able t
 **Recipe card:**  
 Display the recipe instructions of chosen recipe. The user will be able to view the recipe instructions of the recipe they selected. They will also be able to add the recipe to their meal plan, return to the search, go to the home page, or logout. Below is an exmaple of a recipe card.
 
-<img align="left" src="ui_sketches\Recipe_Card.png" alt="A cute cat" width="800" height="600">
-
-
+<img align="left" src="ui_sketches\fig4.png" alt="A cute cat" width="800" height="600">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
 
 **Generate grocery list:**  
@@ -106,6 +120,9 @@ User sets the number of certain dishes they want for the week, ie number of beef
 Drag and drop recipes to change order of random/manual meal plan
 
 **Calendar:**  
+<img align="left" src="ui_sketches\fig6.png" alt="A cute cat" width="800" height="600">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
+
 A weekly calendar to display meals populated by random meal generator or manual meal planner. It will also display the grocery list that can later be viewed in the grocery list page.
 
 **Meal-preferences:**  
