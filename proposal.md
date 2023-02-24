@@ -60,37 +60,40 @@ In conclusion, the website that we propose will provide a convenient and efficie
 |Find recipe by calories|Find recipe by calories/serving content|Server|Yes|Brandon
 
 ## DESCRIPTION OF GUARANTEED DELIVERABLES  
-**Landing Page**
+
+**Landing Page**  
+The landing page will be the first page that the user sees when they visit the website. It will contain a brief description of the website and a button to sign up or login. Below is an example of a landing page.
+
 <img align="left" src="ui_sketches\fig1.png" alt="A cute cat" width="800" height="600">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
 
 **Sign-up:**  
+User signs up to site with a valid email address and password. If the user is a unique user, i.e. there is no user already stored in the database with the same email address, the user info will be stored in a database. 
+
 <img align="left" src="ui_sketches\fig2.png" alt="A cute cat" width="800" height="600">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
 <img align="left" src="ui_sketches\fig3.png" alt="A cute cat" width="800" height="600">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
-
-User signs up to site with a valid email address and password. If the user is a unique user, i.e. there is no user already stored in the database with the same email address, the user info will be stored in a database.  
-
+ 
 **Login:**  
 User logs in with their email and password. If there is an email in the database that matches the one entered the stored user password will be retrieved and compared to the password entered. The user will stayed logged in via refresh tokens until they log out.  
 
-Once logged in they will have several options to choose from
+Once logged in they will have several options to choose from:
+
 <img align="left" src="ui_sketches\fig7.png" alt="A cute cat" width="800" height="600">
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
 
-
-**Random meal preferences:**  
+**Random meal preferences:**    
 User will set meal preferences for the random meal generator. The user will be able to select the number of meals they want for the week, the number of each type of meal they want, and the type of meals they want.  
 
 **Manual meal planner:**  
 User can search recipes and make their own meal plan. The user will be able to search for recipes by name, type of dish, and ingredients. The user will be able to add recipes to their meal plan and remove recipes from their meal plan.  
 
 **Recipe finder by type of dish:**  
+Provide a list of recipes based on type of dish, ie beef, chicken, etc. The user will be able to select the type of dish they want and the number of recipes they want.
+
 <img align="left" src="ui_sketches\fig5.png" alt="A cute cat" width="800" height="600">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
-
-Provide a list of recipes based on type of dish, ie beef, chicken, etc. The user will be able to select the type of dish they want and the number of recipes they want.
 
 **Recipe finder by type of ingredients on hand:**
 Provide a list of recipes based on inputted ingredients. The user will be able to input the ingredients they have on hand and the number of recipes they want.
@@ -120,6 +123,7 @@ User sets the number of certain dishes they want for the week, ie number of beef
 Drag and drop recipes to change order of random/manual meal plan
 
 **Calendar:**  
+
 <img align="left" src="ui_sketches\fig6.png" alt="A cute cat" width="800" height="600">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
 
