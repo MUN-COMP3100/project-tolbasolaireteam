@@ -123,11 +123,10 @@ User sets the number of certain dishes they want for the week, ie number of beef
 Drag and drop recipes to change order of random/manual meal plan
 
 **Calendar:**  
+A weekly calendar to display meals populated by random meal generator or manual meal planner. It will also display the grocery list that can later be viewed in the grocery list page.
 
 <img align="left" src="ui_sketches\fig6.png" alt="A cute cat" width="800" height="600">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
-
-A weekly calendar to display meals populated by random meal generator or manual meal planner. It will also display the grocery list that can later be viewed in the grocery list page.
 
 **Meal-preferences:**  
 User sets meal preference for the week. This can be either by type of dish, ingredients, sodium/sugar content, calories, or a combination of these.
