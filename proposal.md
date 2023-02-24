@@ -1,26 +1,28 @@
 # Project Proposal 
 
-### TEAM
+## TEAM
 |      NAME     |MUN ID | GITHUB USERNAME |   MUN EMAIL  |
 |---------------|-------|-----------------|--------------|
 |Brandon Hardatt|bvh658 |BrandonHardatt   |bvh658@mun.ca |
 |Drew Griffiths |djamesg|DJGriffi         |djamesg@mun.ca|
 
-### PROJECT DESCRIPTION
-#### Dataset
+## PROJECT DESCRIPTION
+**Dataset**  
 The website will be a meal planning/cooking website using this [dataset](https://github.com/shaansubbaiah/allrecipes-scraper.git) scraped from allrecipes.com containing approximately 35,500 recipes. 
-#### Usage
- Using the dataset, the website will generate personalized weekly meal plans based on user-specified preferences, saving users time and reducing food waste. Additionally, the website will generate a weekly grocery list based on the current inventory in the household and the required ingredients for the week, helping users save money and reduce trips to the grocery store.
-#### User-Friendly
+
+**Usage**  
+Using the dataset, the website will generate personalized weekly meal plans based on user-specified preferences, saving users time and reducing food waste. Additionally, the website will generate a weekly grocery list based on the current inventory in the household and the required ingredients for the week, helping users save money and reduce trips to the grocery store.
+
+**User-Friendly**  
 The website will be designed with a clean, intuitive, and user-friendly interface, making it easy for users of all ages to navigate and find the information they need. 
 
-#### Scalability and Data Privacy
+**Scalability and Data Privacy**  
 To ensure scalability, the website will leverage cloud-based solutions to handle the large dataset and user traffic. Additionally, data privacy and security will be prioritized, and user data will be collected and stored with the utmost care and respect for privacy laws and regulations.
 
-#### Conclusion  
+**Conclusion**    
 In conclusion, the website that we propose will provide a convenient and efficient solution to the tedious task of meal planning, making life easier for users who would otherwise have to spend time coming up with meal plans and grocery lists. We look forward to working with you to bring this idea to life.
 
-### PROJECT FEATURE TABLE
+## PROJECT FEATURE TABLE
 
 |Name|Description|End|Deliver|Who|
 |-|-|-|-|-|
