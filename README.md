@@ -1,7 +1,7 @@
 # Project Part 1, CS3100 W2023
 
 ### Files
-- **proposal.md** contains the project proposal (to be submitted for grading).
+- **proposal.md** contains the project proposal (to be submitted for grading). If you encounter any issues viewing this file try using the vscode extension *Markdown Preview Enhanced*
 
 ### Student Information
 |      NAME     |MUN ID | GITHUB USERNAME |   MUN EMAIL  |
@@ -21,3 +21,4 @@
 ### Attribution
 The following resources were used to help with the development of this project:
 - [Dave Grey's Express Tutorial](https://www.youtube.com/watch?v=JZXQ455OT3A&list=PL0Zuz27SZ-6PFkIxaJ6Xx_X46avTM1aYw&index=1)
+
