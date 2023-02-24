@@ -8,7 +8,7 @@
 
 ### PROJECT DESCRIPTION
 #### Dataset
-The website will be a cooking website. Using the [dataset](https://github.com/shaansubbaiah/allrecipes-scraper.git) scraped from allrecipes.com containing approximately 35,500 recipes. 
+The website will be a meal planning/cooking website using this [dataset](https://github.com/shaansubbaiah/allrecipes-scraper.git) scraped from allrecipes.com containing approximately 35,500 recipes. 
 #### Usage
  Using the dataset, the website will generate personalized weekly meal plans based on user-specified preferences, saving users time and reducing food waste. Additionally, the website will generate a weekly grocery list based on the current inventory in the household and the required ingredients for the week, helping users save money and reduce trips to the grocery store.
 #### User-Friendly
