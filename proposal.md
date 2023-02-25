@@ -95,7 +95,7 @@ Provide a list of recipes based on type of dish, ie beef, chicken, etc. The user
 <img align="left" src="ui_sketches\fig5.png" alt="A cute cat" width="800" height="600">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>  
 
-**Recipe finder by type of ingredients on hand:**
+**Recipe finder by type of ingredients on hand:**  
 Provide a list of recipes based on inputted ingredients. The user will be able to input the ingredients they have on hand and the number of recipes they want.
 
 **Recipe card:**  
