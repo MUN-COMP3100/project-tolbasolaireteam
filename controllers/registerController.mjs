@@ -18,7 +18,10 @@ export const handleNewUser = async (req, res) => {
             "firstName": firstName,
             "lastName": lastName,
             "password": hashedPwd,
-            "email": email
+            "email": email,
+            "roles": {
+                "User": 2001
+            }
         });
 
         console.log(result);

@@ -2,11 +2,11 @@ import { Recipe } from '../model/Recipe.mjs';
 
 export const findRecipeByIngredient = async (req, res) => {
     
-    if (!req?.params?.ingredients) return res.status(400).json({ 'message': 'Ingredients required.' });
+    if (!req?.query?.ingredients) return res.status(400).json({ 'message': 'Ingredients required.' });
 
-    const result = await Recipe.find({ ingredients: { $regex: req.params.ingredients } }).limit(10).exec();
-    if (!result) {
-        return res.status(204).json({ "message": `No recipes match the ingredients ${req.params.ingredients}.` });
+    const result = await Recipe.find({ingredients: {$in: [req.query.ingredients]}}).limit(10).exec();
+    if (result.length === 0) {
+        return res.status(204).json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
     }
     res.json(result);
 }

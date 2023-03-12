@@ -6,7 +6,10 @@ export const handleLogin = async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) return res.status(400).json({ 'message': 'Email and password are required.' });
     const foundUser = await User.findOne({ email: email }).exec();
-    if (!foundUser) return res.sendStatus(401); //Unauthorized 
+    if (!foundUser) {
+        console.log('User not found');
+        return res.sendStatus(401); //Unauthorized 
+    }
     // evaluate password 
     const match = await bcrypt.compare(password, foundUser.password);
     if (match) {
@@ -40,6 +43,7 @@ export const handleLogin = async (req, res) => {
         res.json({ roles, accessToken });
 
     } else {
+        console.log('Password does not match');
         res.sendStatus(401);
     }
 }

@@ -11,5 +11,5 @@ router.route('/')
     .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), recipesController.updateRecipe)
     .delete(verifyRoles(ROLES_LIST.Admin), recipesController.deleteRecipe);
 
-router.route('/:ingredients')
+router.route('/findByIngredients')
     .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor, ROLES_LIST.User), recipesController.findRecipeByIngredient);
