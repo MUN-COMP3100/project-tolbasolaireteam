@@ -4,14 +4,19 @@ export const findRecipeByIngredient = async (req, res) => {
     
     if (!req?.query?.ingredients) return res.status(400).json({ 'message': 'Ingredients required.' });
 
-    const result = await Recipe.find({ingredients: {$in: [req.query.ingredients]}}).limit(10).exec();
+    const result = await Recipe.find(
+        { $text: { $search: req.query.ingredients.join(' ') } },
+        { score: { $meta: "textScore" } }
+    ).sort(
+            { score: { $meta: "textScore"}}
+    ).limit(10).exec();
     if (result.length === 0) {
         return res.status(204).json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
     }
     res.json(result);
 }
 
- export const getAllRecipes = async (req, res) => {
+export const getAllRecipes = async (req, res) => {
     const results = await Recipe.find();
     if (!results) return res.status(204).json({ 'message': 'No recipes found.' });
     res.json(results);
