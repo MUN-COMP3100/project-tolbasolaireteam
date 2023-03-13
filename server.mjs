@@ -72,3 +72,11 @@ mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
+
+process.on('SIGINT', () => {
+    console.info('SIGINT signal received.');
+    console.log('Closing Mongo Client.');
+    mongoose.connection.close();
+    console.log('Mongo Client closed.');
+    process.exit(0);
+});
