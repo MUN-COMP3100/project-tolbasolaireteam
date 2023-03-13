@@ -1,7 +1,15 @@
 import { Recipe } from '../model/Recipe.mjs';
 
-export const findRecipeByIngredient = async (req, res) => {
-    
+/**
+ * Returns recipes that match the given ingredients. The number of results is limited to 10.
+ * The ingredients are joined with a space, so the search is for recipes that contain all of the ingredients.
+ * The results are sorted by the textScore, which is a MongoDB feature that ranks the results by how well they 
+ * match the search.
+ * @param {Request} req - The request object. 
+ * @param {Response} res - The response object.
+ * @returns  
+ */
+export const findRecipeByIngredient = async (req, res) => {   
     if (!req?.query?.ingredients) return res.status(400).json({ 'message': 'Ingredients required.' });
 
     const result = await Recipe.find(
@@ -16,12 +24,25 @@ export const findRecipeByIngredient = async (req, res) => {
     res.json(result);
 }
 
+/**
+ * Returns all recipes in the database.
+ * @param {Request} req - The request object. 
+ * @param {Response} res - The response object.
+ * @returns 
+ */
 export const getAllRecipes = async (req, res) => {
     const results = await Recipe.find();
     if (!results) return res.status(204).json({ 'message': 'No recipes found.' });
     res.json(results);
 }
 
+
+/**
+ * Adds a new recipe to the database.
+ * @param {Request} req - The request object. 
+ * @param {Response} res - The response object.
+ * @returns 
+ */
 export const createNewRecipe = async (req, res) => {
     if (!req?.body?.name || !req?.body?.summary || !req?.body?.ingredients || !req?.body?.instructions) {
         return res.status(400).json({ 'message': 'Recipe name, ingredients, instructions, and a summary are required.' });
@@ -85,6 +106,12 @@ export const createNewRecipe = async (req, res) => {
     }
 }
 
+/**
+ * Updates a recipe in the database.
+ * @param {Request} req - The request object. 
+ * @param {Response} res - The response object. 
+ * @returns 
+ */
 export const updateRecipe = async (req, res) => {
     if (!req?.body?.id) {
         return res.status(400).json({ 'message': 'Recipe ID parameter is required.' });
@@ -100,6 +127,12 @@ export const updateRecipe = async (req, res) => {
     res.json(result);
 }
 
+/**
+ * Deletes a recipe from the database.
+ * @param {Request} req - The request object. 
+ * @param {Response} res - The response object. 
+ * @returns 
+ */
 export const deleteRecipe = async (req, res) => {
     if (!req?.body?.id) return res.status(400).json({ 'message': 'Recipe ID required.' });
 
@@ -111,6 +144,12 @@ export const deleteRecipe = async (req, res) => {
     res.json(result);
 }
 
+/**
+ * Find a recipe by ID.
+ * @param {Request} req - The request object. 
+ * @param {Response} res - The response object. 
+ * @returns 
+ */
 export const getRecipe = async (req, res) => {
     if (!req?.params?.id) return res.status(400).json({ 'message': 'Recipe ID required.' });
 
