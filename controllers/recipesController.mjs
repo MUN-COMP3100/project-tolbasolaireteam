@@ -9,6 +9,30 @@ import { Recipe } from '../model/Recipe.mjs';
  * @param {Response} res - The response object.
  * @returns  
  */
+export const findRecipeByTime = async (req, res) => {   
+    if (!req?.query?.total) return res.status(400).json({ 'message': 'Time required.' });
+
+    const result = await Recipe.find(
+        { $text: { $search: req.query.total.join(' ') } },
+        { score: { $meta: "textScore" } }
+    ).sort(
+            { score: { $meta: "textScore"}}
+    ).limit(10).exec();
+    if (result.length === 0) {
+        return res.status(204).json({ "message": `No recipes match the time ${req.query.total}.` });
+    }
+    res.json(result);
+}
+
+/**
+ * Returns recipes that match the given ingredients. The number of results is limited to 10.
+ * The ingredients are joined with a space, so the search is for recipes that contain all of the ingredients.
+ * The results are sorted by the textScore, which is a MongoDB feature that ranks the results by how well they 
+ * match the search.
+ * @param {Request} req - The request object. 
+ * @param {Response} res - The response object.
+ * @returns  
+ */
 export const findRecipeByIngredient = async (req, res) => {   
     if (!req?.query?.ingredients) return res.status(400).json({ 'message': 'Ingredients required.' });
 
