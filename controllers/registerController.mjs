@@ -1,33 +1,41 @@
 import { User } from '../model/User.mjs';
+import { validate_fields } from '../config/validateFields.mjs';
 import bcrypt from 'bcrypt';
 
 export const handleNewUser = async (req, res) => {
     const { firstName, lastName, pwd, email } = req.body;
     if (!firstName || !lastName || !pwd || !email) return res.status(400).json({ 'message': 'First and last name, email, and password are required.' });
 
-    // check for duplicate usernames in the db
-    const duplicate = await User.findOne({ email: email }).exec();
-    if (duplicate) return res.sendStatus(409); //Conflict 
+    let isValid = await validate_fields(firstName, lastName, email);
+    if (isValid) {
 
-    try {
-        //encrypt the password
-        const hashedPwd = await bcrypt.hash(pwd, 10);
+        // check for duplicate usernames in the db
+        const duplicate = await User.findOne({ email: email }).exec();
+        if (duplicate) return res.status(409).json({ 'message': 'Email is already registered.'}); //Conflict 
 
-        //create and store the new user
-        const result = await User.create({
-            "firstName": firstName,
-            "lastName": lastName,
-            "password": hashedPwd,
-            "email": email,
-            "roles": {
-                "User": 2001
-            }
-        });
+        try {
+            //encrypt the password
+            const hashedPwd = await bcrypt.hash(pwd, 10);
 
-        console.log(result);
+            //create and store the new user
+            const result = await User.create({
+                "firstName": firstName,
+                "lastName": lastName,
+                "password": hashedPwd,
+                "email": email,
+                // "roles": {
+                //     "User": 2001
+                // }
+            });
 
-        res.status(201).json({ 'success': `New user ${email} created!` });
-    } catch (err) {
-        res.status(500).json({ 'message': err.message });
+            console.log(result);
+
+            res.status(201).json({ 'success': `New user ${email} created!` });
+        } catch (err) {
+            res.status(500).json({ 'message': err.message });
+        }
+    } 
+    else {
+        res.json({ 'message': 'Invalid fields.' });
     }
 }
