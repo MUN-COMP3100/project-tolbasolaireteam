@@ -3,8 +3,8 @@ import { validate_fields } from '../config/validateFields.mjs';
 import bcrypt from 'bcrypt';
 
 export const handleNewUser = async (req, res) => {
-    const { firstName, lastName, pwd, email } = req.body;
-    if (!firstName || !lastName || !pwd || !email) return res.status(400).json({ 'message': 'First and last name, email, and password are required.' });
+    const { firstName, lastName, password, email } = req.body;
+    if (!firstName || !lastName || !password || !email) return res.status(400).json({ 'message': 'First and last name, email, and password are required.' });
 
     let isValid = await validate_fields(firstName, lastName, email);
     if (isValid) {

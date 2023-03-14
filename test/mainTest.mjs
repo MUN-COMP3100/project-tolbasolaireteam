@@ -20,7 +20,7 @@ describe('Meal Planner App - Tests with Mocha', function(){
                 let response = await instance.post('/register', {
                     firstName: 'Amilcar123',
                     lastName: 'Soares',
-                    pwd: '123456',
+                    password: '123456',
                     email: 'amilcars@mun.ca'
                 });
                 strictEqual(response.data.message, 'Invalid fields.');
