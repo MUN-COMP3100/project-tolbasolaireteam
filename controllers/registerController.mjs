@@ -4,14 +4,16 @@ import bcrypt from 'bcrypt';
 
 export const handleNewUser = async (req, res) => {
     const { firstName, lastName, password, email } = req.body;
-    if (!firstName || !lastName || !password || !email) return res.status(400).json({ 'message': 'First and last name, email, and password are required.' });
+    // if (!firstName || !lastName || !password || !email) return res.status(400).json({ 'message': 'First and last name, email, and password are required.' });
+    if (!firstName || !lastName || !password || !email) return res.json({ 'message': 'First and last name, email, and password are required.' });
 
     let isValid = await validate_fields(firstName, lastName, email);
     if (isValid) {
 
         // check for duplicate usernames in the db
         const duplicate = await User.findOne({ email: email }).exec();
-        if (duplicate) return res.status(409).json({ 'message': 'Email is already registered.'}); //Conflict 
+        // if (duplicate) return res.status(409).json({ 'message': 'Email is already registered.'}); //Conflict 
+        if (duplicate) return res.json({ 'message': 'Email is already registered.'});
 
         try {
             //encrypt the password
