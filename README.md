@@ -14,11 +14,28 @@
 - See **proposal.md** for more details.
 - This project has been approved by the instructor.
 
-### Setup run these commands in the root directory of the project if any issues are encountered 
-- npm init 
-- npm install dotenv express cors mongodb mongoose cookie-parser validator
+
+### Running the project
+
+- Upload the database to the local server using MongoDB Compass: 
+
+<img align="left" src="images\MongoDB_upload.png" alt="Database upload" width="958" height="522">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+Note that this import gives the database name recipe and the collection name allrecipe
+
+- Install the dependencies 
+`npm install dependencies`
+
+- Run the server: 
+`npm start`  
+
+- Test the server: 
+`npm test`   
 
 ### Attribution
 The following resources were used to help with the development of this project:
 - [Dave Grey's Express Tutorial](https://www.youtube.com/watch?v=JZXQ455OT3A&list=PL0Zuz27SZ-6PFkIxaJ6Xx_X46avTM1aYw&index=1)
-
+- https://developer.mozilla.org/
+- Collaborative effort from Drew Griffiths and Brandon Hardatt
+- Worked on features together and communicated on Discord
