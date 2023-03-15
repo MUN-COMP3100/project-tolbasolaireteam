@@ -4,11 +4,13 @@ import jwt from 'jsonwebtoken';
 
 export const handleLogin = async (req, res) => {
     const { email, password } = req.body;
-    if (!email || !password) return res.status(400).json({ 'message': 'Email and password are required.' });
+    // if (!email || !password) return res.status(400).json({ 'message': 'Email and password are required.' });
+    if (!email || !password) return res.json({ 'message': 'Email and password are required.' });
     const foundUser = await User.findOne({ email: email }).exec();
     if (!foundUser) {
         console.log('User not found');
-        return res.sendStatus(401); //Unauthorized 
+        // return res.sendStatus(401); //Unauthorized 
+        return res.json({ 'message': 'User not found.' });
     }
     // evaluate password 
     const match = await bcrypt.compare(password, foundUser.password);
@@ -44,6 +46,7 @@ export const handleLogin = async (req, res) => {
 
     } else {
         console.log('Password does not match');
-        res.sendStatus(401);
+        // res.sendStatus(401);
+        res.json({ 'message': 'Password does not match.' });
     }
 }
