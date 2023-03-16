@@ -12,7 +12,7 @@ import { Recipe } from '../model/Recipe.mjs';
 export const findRecipeByTime = async (req, res) => {   
     // if (!req?.query?.total) return res.status(400).json({ 'message': 'Time required.' });
     if (!req?.query?.total) return res.json({ 'message': 'Time required.' });
-
+    console.log('here')
     const result = await Recipe.find(
         { $text: { $search: req.query.total.join(' ') } },
         { score: { $meta: "textScore" } }
@@ -22,6 +22,7 @@ export const findRecipeByTime = async (req, res) => {
     if (result.length === 0) {
         return res.status(204).json({ "message": `No recipes match the time ${req.query.total}.` });
     }
+    console.log(result.length);
     res.json(result);
 }
 
@@ -45,8 +46,10 @@ export const findRecipeByIngredient = async (req, res) => {
             { score: { $meta: "textScore"}}
     ).limit(10).exec();
     if (result.length === 0) {
-        return res.status(204).json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
+        // return res.status(204).json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
+        return res.json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
     }
+    console.log(result.length);
     res.json(result);
 }
 

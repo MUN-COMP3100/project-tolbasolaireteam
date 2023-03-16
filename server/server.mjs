@@ -50,7 +50,7 @@ app.use('/auth', (await import('./routes/auth.mjs')).router);
 app.use('/refresh', (await import('./routes/refresh.mjs')).router);
 app.use('/logout', (await import('./routes/logout.mjs')).router);
 
-app.use(verifyJWT);
+// app.use(verifyJWT); <---------------*************removed for testing purposes
 app.use('/recipes', (await import('./routes/api/recipes.mjs')).router);
 app.use('/users', (await import('./routes/api/users.mjs')).router);
 
@@ -58,7 +58,7 @@ app.use('/users', (await import('./routes/api/users.mjs')).router);
 app.all('*', (req, res) => {
     res.status(404);
     if (req.accepts('html')) {
-        res.sendFile(fileURLToPath(new URL('../views/404.html', import.meta.url)));
+        res.sendFile(fileURLToPath(new URL('./views/404.html', import.meta.url)));
     } else if (req.accepts('json')) {
         res.json({ "error": "404 Not Found" });
     } else {

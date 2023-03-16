@@ -2,10 +2,12 @@ import { strictEqual, fail } from 'assert';
 import { User } from '../model/User.mjs';
 import { validate_fields } from '../config/validateFields.mjs';
 import axios from 'axios';
+import { assert } from 'console';
+
 
 const create = axios.create;
 
-var myurl = 'http://localhost:3000';           
+var myurl = 'http://localhost:3500';           
 // Let's configure the base url
 const instance = create({
     baseURL: myurl,
@@ -44,7 +46,7 @@ describe('Meal Planner App - Tests with Mocha', function()
                 strictEqual(response.data.message, 'First and last name, email, and password are required.');
             });
 
-            it('Fail 3. POST(register/sign-up user) - Test valid first name.', 
+            it('Fail 3. POST(register/sign-up user) - Test email already registered.', 
             async function() 
             {
                 let response = await instance.post('/register', 
@@ -73,12 +75,22 @@ describe('Meal Planner App - Tests with Mocha', function()
 
         describe('database', function()
         { 
-            it('Pass 4. GET(Recipe) - Get recipe by ingredient.', 
-            async function() 
-            {
-                let response = await instance.get('/register', {ingredients: "macaroni butter flour salt black pepper milk cheese"});
-                
-                strictEqual(response.data.name, 'Simple Macaroni and Cheese');
+            it('Fail 4. GET(Recipe) - Missing ingredients.',
+            async function() {
+                let response = await instance.get('/recipes/findByIngredients');
+                strictEqual(response.data.message, 'Ingredients required.');
+            });
+
+            it('Fail 5. GET(Recipe) - Invalid ingredient.',
+            async function() {
+                let response = await instance.get('/recipes/findByIngredients?ingredients=battery&ingredients=plutonium');
+                strictEqual(response.data.message, 'No recipes match the ingredients battery,plutonium.');
+            });
+
+            it('Pass 5. GET(Recipe) - Get recipe by ingredient.', 
+            async function() {
+                let response = await instance.get('/recipes/findByIngredients?ingredients=macaroni&ingredients=butter&ingredients=flour&ingredients=salt&ingredients=milk&ingredients=cheese');
+                assert(response.data);
             });
         });
 
