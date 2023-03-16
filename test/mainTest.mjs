@@ -18,8 +18,7 @@ describe('Meal Planner App - Tests with Mocha', function()
     describe('Test API calls', function()
     {
         describe('users', function()
-        {
-            // firstName is invalid  
+        { 
             it('Fail 1. POST(register/sign-up user) - Test invalid first name in object.', 
             async function() 
             {
@@ -33,18 +32,16 @@ describe('Meal Planner App - Tests with Mocha', function()
                 strictEqual(response.data.message, 'Invalid fields.');
             });
 
-
-            it('Pass 2. POST(register/sign-up user) - Test valid first name.', 
+            it('Fail 2. POST(register/sign-up user) - Test blank password', 
             async function() 
             {
                 let response = await instance.post('/register', 
                 {
                     firstName: 'Amilcar',
                     lastName: 'Soares',
-                    pwd: '123456',
                     email: 'amilcars@mun.ca'
                 });
-                strictEqual(response.data.message, 'New user amilcars@mun.ca created!');
+                strictEqual(response.data.message, 'First and last name, email, and password are required.');
             });
 
             it('Fail 3. POST(register/sign-up user) - Test valid first name.', 
@@ -54,16 +51,37 @@ describe('Meal Planner App - Tests with Mocha', function()
                 {
                     firstName: 'Amilcar',
                     lastName: 'Soares',
-                    pwd: '123456',
+                    password: '123456',
                     email: 'amilcars@mun.ca'
                 });
                 strictEqual(response.data.message, 'Email is already registered.');
             });
 
-
-
-
-
+            // it('Pass 2. POST(register/sign-up user) - Test valid first user.', 
+            // async function() 
+            // {
+            //     let response = await instance.post('/register', 
+            //     {
+            //         firstName: 'Amilcar',
+            //         lastName: 'Soares',
+            //         password: '123456',
+            //         email: 'amilcars@mun.ca'
+            //     });
+            //     strictEqual(response.data.message, 'New user amilcars@mun.ca created!');
+            // });
         });
+
+        describe('database', function()
+        { 
+            it('Pass 4. GET(Recipe) - Get recipe by ingredient.', 
+            async function() 
+            {
+                let response = await instance.get('/register', {ingredients: "macaroni butter flour salt black pepper milk cheese"});
+                
+                strictEqual(response.data.name, 'Simple Macaroni and Cheese');
+            });
+        });
+
+
     });
 });    
