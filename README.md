@@ -34,6 +34,20 @@
 - Run a variety of Mocha tests for the 6 features implemented with: 
 `npm test`   
 
+### Implementation description 
+
+### Root
+- **server.mjs**
+    - Uses `dotenv` is used to load environment variables from a .env file. It contains credentials to access the database. 
+    - `express` is the web framework used to create the server.
+
+
+
+...
+
+
+Outline the basic architecture (code modules and module responsibilities) in your submission to help the marker understand your code.
+
 ### Project Part 2 Feature Descriptions
 
 #### 1.
