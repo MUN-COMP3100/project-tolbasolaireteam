@@ -18,7 +18,7 @@ export const findRecipeByTime = async (req, res) => {
         { score: { $meta: "textScore" } }
     ).sort(
             { score: { $meta: "textScore"}}
-    ).limit(10).exec();
+    ).exec();
     if (result.length === 0) {
         return res.status(204).json({ "message": `No recipes match the time ${req.query.total}.` });
     }
@@ -41,15 +41,29 @@ export const findRecipeByIngredient = async (req, res) => {
 
     const result = await Recipe.find(
         { $text: { $search: req.query.ingredients.join(' ') } },
-        { score: { $meta: "textScore" } }
+        { score: { $meta: "textScore" } },
     ).sort(
             { score: { $meta: "textScore"}}
-    ).limit(10).exec();
+    ).limit(200).exec();
     if (result.length === 0) {
         // return res.status(204).json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
         return res.json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
     }
-    console.log(result.length);
+    res.json(result);
+}
+
+/**
+ * Returns the recipes that match the given type of dish, i.e. beef, chicken, etc.
+ * @param {*} req - The request object.
+ * @param {*} res - The response object.
+ * @returns - The recipes that match the given type of dish.
+ */
+export const findRecipeByType = async (req, res) => {
+    if (!req?.query?.type) return res.json({ 'message': 'Type required.' });
+    const result = await Recipe.find({ingredients: {$regex: req.query.type}}).exec();
+    if (result.length === 0) {
+        return res.json({ "message": `No recipes match the type ${req.query.type}.` });
+    }
     res.json(result);
 }
 

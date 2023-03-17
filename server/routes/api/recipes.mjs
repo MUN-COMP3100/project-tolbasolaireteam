@@ -18,3 +18,7 @@ router.route('/')
 router.route('/findByIngredients')
     // .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor, ROLES_LIST.User), recipesController.findRecipeByIngredient);
     .get(recipesController.findRecipeByIngredient);
+
+router.route('/findByType')
+    // .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor, ROLES_LIST.User), recipesController.findRecipeByType);
+    .get(recipesController.findRecipeByType);

@@ -6,7 +6,7 @@ export const getAllUsers = async (req, res) => {
     res.json(users);
 }
 
- export const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
     // if (!req?.body?.id) return res.status(400).json({ "message": 'User ID required' });
     if (!req?.body?.id) return res.json({ "message": 'User ID required' });
     const user = await User.findOne({ _id: req.body.id }).exec();
