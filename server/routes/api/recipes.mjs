@@ -10,7 +10,7 @@ router.route('/')
     // .post(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), recipesController.createNewRecipe)
     // .put(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor), recipesController.updateRecipe)
     // .delete(verifyRoles(ROLES_LIST.Admin), recipesController.deleteRecipe);
-    .get(recipesController.getAllRecipes)
+    .get(recipesController.getRecipe)
     .post(recipesController.createNewRecipe)
     .put(recipesController.updateRecipe)
     .delete(recipesController.deleteRecipe);

@@ -87,9 +87,9 @@ export const getAllRecipes = async (req, res) => {
  * @returns 
  */
 export const createNewRecipe = async (req, res) => {
-    if (!req?.body?.name || !req?.body?.summary || !req?.body?.ingredients || !req?.body?.instructions) {
+    if (!req?.body?.name || !req?.body?.summary || !req?.body?.ingredients || !req?.body?.directions) {
         // return res.status(400).json({ 'message': 'Recipe name, ingredients, instructions, and a summary are required.' });
-        return res.json({ 'message': 'Recipe name, ingredients, instructions, and a summary are required.' });
+        return res.json({ 'message': 'Recipe name, ingredients, directions, and a summary are required.' });
     }
 
     try {
@@ -97,7 +97,7 @@ export const createNewRecipe = async (req, res) => {
             name: req.body.name,
             summary: req.body.summary,
             ingredients: req.body.ingredients,
-            instructions: req.body.instructions,
+            directions: req.body.directions,
             url: req.body.url,
             category: req.body.category,
             author: req.body.author,
@@ -143,8 +143,9 @@ export const createNewRecipe = async (req, res) => {
             omega_3_fatty_acid_g: req.body.omega_3_fatty_acid_g,
             omega_6_fatty_acid_g: req.body.omega_6_fatty_acid_g
         });
-
-        res.status(201).json(result);
+        console.log(result);
+        // res.status(201).json(result);
+        res.json(result);
     } catch (err) {
         console.error(err);
     }
@@ -157,19 +158,21 @@ export const createNewRecipe = async (req, res) => {
  * @returns 
  */
 export const updateRecipe = async (req, res) => {
-    if (!req?.body?.id) {
+    if (!req?.body?.name) {
         // return res.status(400).json({ 'message': 'Recipe ID parameter is required.' });
-        return res.json({ 'message': 'Recipe ID parameter is required.' });
+        return res.json({ 'message': 'Recipe name is required.' });
     }
 
-    const recipe = await Recipe.findOne({ _id: req.body.id }).exec();
+    const recipe = await Recipe.findOne({ name: req.body.name }).exec();
     if (!recipe) {
-        return res.status(204).json({ "message": `No recipe matches ID ${req.body.id}.` });
+        // return res.status(204).json({ "message": `No recipe matches the name ${req.body.name}.` });
+        return res.json({ "message": `No recipe matches the name ${req.body.name}.` });
     }
     if (req.body?.ingredients) Recipe.ingredients = req.body.ingredients;
-    if (req.body?.instructions) Recipe.instructions = req.body.instructions;
+    if (req.body?.directions) Recipe.directions = req.body.directions;
     const result = await recipe.save();
-    res.json(result);
+    // res.json(result);
+    res.json({ "message": `Recipe ${req.body.name} updated.` });
 }
 
 /**
@@ -180,29 +183,32 @@ export const updateRecipe = async (req, res) => {
  */
 export const deleteRecipe = async (req, res) => {
     // if (!req?.body?.id) return res.status(400).json({ 'message': 'Recipe ID required.' });
-    if (!req?.body?.id) return res.json({ 'message': 'Recipe ID required.' });
+    if (!req?.body?.name) return res.json({ 'message': 'Recipe name is required.' });
 
-    const recipe = await Recipe.findOne({ _id: req.body.id }).exec();
+    const recipe = await Recipe.findOne({ name: req.body.name }).exec();
     if (!recipe) {
-        return res.status(204).json({ "message": `No recipe matches ID ${req.body.id}.` });
+        // return res.status(204).json({ "message": `No recipe matches ID ${req.body.id}.` });
+        return res.json({ "message": `No recipe matches the name ${req.body.name}.` });
     }
     const result = await recipe.deleteOne(); //{ _id: req.body.id }
-    res.json(result);
+    res.json({ "message": `Recipe ${req.body.name} deleted.` });
 }
 
 /**
- * Find a recipe by ID.
+ * Find a recipe by name.
  * @param {Request} req - The request object. 
  * @param {Response} res - The response object. 
  * @returns 
  */
 export const getRecipe = async (req, res) => {
     // if (!req?.params?.id) return res.status(400).json({ 'message': 'Recipe ID required.' });
-    if (!req?.params?.id) return res.json({ 'message': 'Recipe ID required.' });
+    if (!req?.query?.name) return res.json({ 'message': 'Recipe name is required.' });
     
-    const recipe = await Recipe.findOne({ _id: req.params.id }).exec();
+    const recipe = await Recipe.findOne({ name: req.query.name }).exec();
     if (!recipe) {
-        return res.status(204).json({ "message": `No recipe matches ID ${req.params.id}.` });
+        // return res.status(204).json({ "message": `No recipe matches ID ${req.params.id}.` });
+        return res.json({ "message": `No recipe matches the name ${req.query.name}.` });
     }
     res.json(recipe);
+
 }
