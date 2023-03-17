@@ -10,7 +10,7 @@ export const handleNewUser = async (req, res) => {
 
     let isValid = await validate_fields(firstName, lastName, email);
     if (isValid) {
-
+        console.log('Valid fields.');
         // check for duplicate usernames in the db
         const duplicate = await User.findOne({ email: email }).exec();
         // if (duplicate) return res.status(409).json({ 'message': 'Email is already registered.'}); //Conflict 
@@ -18,8 +18,7 @@ export const handleNewUser = async (req, res) => {
 
         try {
             //encrypt the password
-            const hashedPwd = await bcrypt.hash(pwd, 10);
-
+            const hashedPwd = await bcrypt.hash(password, 10);
             //create and store the new user
             const result = await User.create({
                 "firstName": firstName,
@@ -31,10 +30,10 @@ export const handleNewUser = async (req, res) => {
                 // }
             });
 
-            console.log(result);
-
-            res.status(201).json({ 'success': `New user ${email} created!` });
+            // res.status(201).json({ 'success': `New user ${email} created!` });
+            res.json({ 'success': `New user ${email} created!` });
         } catch (err) {
+            console.log(err);
             res.status(500).json({ 'message': err.message });
         }
     } 
