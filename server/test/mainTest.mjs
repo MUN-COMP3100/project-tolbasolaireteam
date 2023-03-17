@@ -1,4 +1,4 @@
-import { strictEqual, fail } from 'assert';
+import { strictEqual, fail, strict } from 'assert';
 import { User } from '../model/User.mjs';
 import { validate_fields } from '../config/validateFields.mjs';
 import axios from 'axios';
@@ -17,11 +17,12 @@ const instance = create({
 
 describe('Meal Planner App - Tests with Mocha', function()
 {
-    describe('Test API calls', function()
+    describe('Test routes', function()
     {
-        describe('users', function()
+        describe('Test the /register route to sign-up a new user to the web app', function()
         { 
-            it('Fail 1. POST(register/sign-up user) - Test invalid first name in object.', 
+            it('Fail 1. Try to register/sign-up user with invalid first name in object.\n' +
+            '           This test should fail with a response message of "Invalid fields."',
             async function() 
             {
                 let response = await instance.post('/register', 
@@ -34,7 +35,8 @@ describe('Meal Planner App - Tests with Mocha', function()
                 strictEqual(response.data.message, 'Invalid fields.');
             });
 
-            it('Fail 2. POST(register/sign-up user) - Test blank password', 
+            it('Fail 2. Try to register/sign-up user with an empty required field (the password) in object.\n' +
+            '           This test should fail with a response message of "First and last name, email, and password are required."', 
             async function() 
             {
                 let response = await instance.post('/register', 
@@ -46,7 +48,8 @@ describe('Meal Planner App - Tests with Mocha', function()
                 strictEqual(response.data.message, 'First and last name, email, and password are required.');
             });
 
-            it('Fail 3. POST(register/sign-up user) - Test email already registered.', 
+            it('Fail 3. Try to register/sign-up user with an email that is already registered.\n' +
+            '           This test should fail with a response message of "Email is already registered."',
             async function() 
             {
                 let response = await instance.post('/register', 
@@ -59,19 +62,74 @@ describe('Meal Planner App - Tests with Mocha', function()
                 strictEqual(response.data.message, 'Email is already registered.');
             });
 
-            // it('Pass 2. POST(register/sign-up user) - Test valid first user.', 
-            // async function() 
-            // {
-            //     let response = await instance.post('/register', 
-            //     {
-            //         firstName: 'Amilcar',
-            //         lastName: 'Soares',
-            //         password: '123456',
-            //         email: 'amilcars@mun.ca'
-            //     });
-            //     strictEqual(response.data.message, 'New user amilcars@mun.ca created!');
-            // });
+            it('Pass 1. Try to register/sign-up a new user.\n' +
+            '           This test should pass with a response message of "New user amilcars1@mun.ca created!"',
+            async function() 
+            {
+                let response = await instance.post('/register', 
+                {
+                    firstName: 'Amilcar',
+                    lastName: 'Soares',
+                    password: '123456',
+                    email: 'amilcars1@mun.ca'
+                });
+                strictEqual(response.data.success, 'New user amilcars1@mun.ca created!');
+            });
         });
+
+        describe('Test the /auth route to sign-in a user to the web app', function()
+        {
+            it('Fail 1. Try to sign-in a user with an empty required field (the email in this case).\n' +
+            '           This test should fail with a response message of "Email and password are required."',
+            async function()
+            {
+                let response = await instance.post('/auth',
+                {
+                    email: null,
+                    password: '123456'
+                });
+                strictEqual(response.data.message, 'Email and password are required.');
+            });
+
+            it('Fail 2. Try to sign-in a user with an invalid email.\n' +
+            '           This test should fail with a response message of "User not found."',
+            async function()
+            {
+                let response = await instance.post('/auth',
+                {
+                    email: 'greg@gmail.com',
+                    password: '123456'
+                });
+                strictEqual(response.data.message, 'User not found.');
+            });
+
+            it('Fail 3. Try to sign-in a user with an invalid password.\n' +
+            '           This test should fail with a response message of "Password does not match."',
+            async function()
+            {
+                let response = await instance.post('/auth',
+                {
+                    email: 'griffithsdrew@gmail.com',
+                    password: '1234567'
+                });
+                strictEqual(response.data.message, 'Password does not match.');
+            });
+
+            it('Pass 1. Try to sign-in a user with a valid email and password.\n' +
+            '           This test should pass with a access token and an array of roles.',
+            async function()
+            {
+                let response = await instance.post('/auth',
+                {
+                    email: 'griffithsdrew@gmail.com',
+                    password: 'abcd1234'
+                });
+                strictEqual(response.data.roles[0], 2001);
+            });
+
+        });
+
+
 
         describe('database', function()
         { 
