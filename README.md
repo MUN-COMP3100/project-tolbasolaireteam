@@ -17,9 +17,9 @@
 
 ### Running the project
 
-- First, clone the repository to your local machine.
-- Second, install the dependencies with `npm install`
-- Third, create a .env file in the server directory and add the following lines:
+1. Clone the repository to your local machine.
+2. Install the dependencies with `npm install`
+3. Create a `.env` file in the server directory and add the following lines:
     - `DB_USERNAME=marker`
     - `DB_PASSWORD=fryqw1O0IaeECj4v`
     - `DATABASE_URI= mongodb+srv://marker:fryqw1O0IaeECj4v@cluster0.nat73ng.mongodb.net/recipesData?retryWrites=true&w=majority`
@@ -31,10 +31,10 @@
 <img align="left" src="images\.env.png" alt="Database upload" width="950" height="300">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-- Fourth, open a terminal in the server directory and run the server with: 
+4. open a terminal in the server directory and run the server with: 
 `npm start`  
 
-- Next, open another terminal to run a variety of Mocha tests with the command `npm test` for the following features implemented:
+5. Open another terminal to run a variety of Mocha tests with the command `npm test` for the following features implemented:
     - Sign-up/register a new user
     - Login a user
     - Create a new recipe
@@ -44,49 +44,40 @@
     - Find recipes by list of ingredients
     - Find recipes by type of dish, i.e. beef, chicken, etc.
 <br><br >
-- To shut down the server, press `ctrl + c` in the terminal where the server is running.
+- 6. To shut down the server, press `CRTL + C` in the terminal where the server is running.
 ### Implementation description 
 
-### Root
-- **server.mjs**
-    - Uses `dotenv` is used to load environment variables from a .env file. It contains credentials to access the database. 
-    - `express` is the web framework used to create the server.
+### Implementation description / Architecture
 
+- **data**: Contains the database of recipes to be uploaded to the MongoDB server.
+- **feedback**: Contains feedback from Project Part 1.
+- **images**: Contains UI sketches.
+- **server.mjs**: 
+    - Loads environment variables using dotenv.
+    - Creates a web server using the express framework.
+    - Uses mongoose as an Object Data Modeling (ODM) library to interact with a MongoDB database.
+    - Establishes a connection to the MongoDB database and starts the server on port 3500.
+- **.env**: Credentials to access the database.
+- **server/config**: Configuration modules
+- **server/controllers**: Controller modules responsible for handling requests and generating responses.
+- **server/log**: Log files for the server.
+- **server/middleware**: Middleware modules responsible for processing requests before they reach the controllers.
+- **server/model**: Modules defining the data schema for the MongoDB database.
+- **server/routes/api**: Modules defining the API routes for the server.
+- **server/test**: Test files for the server
+- **server/views**: View templates for rendering HTML pages.
 
+### Feature Descriptions
 
-...
+**Each of the 6 features implemented can be tested by navigating to the server folder (in a terminal in vscode) and running `npm start` and `npm test` in another terminal. Working and failure cases are provided in the mocha framework. Each of the test are labelled so finding a features corresponding tests are organized**
 
-
-Outline the basic architecture (code modules and module responsibilities) in your submission to help the marker understand your code.
-
-### Project Part 2 Feature Descriptions
-
-#### 1.
-- Feature name: Find recipe by total cooking time
-    - Description: Find recipes in the database that contain all of the given ingredients, and return the top 10 results in order of priority.
-    - Implementation strategy: The results are sorted by textScore, which is a MongoDB feature that ranks results by relevance.
-    - Imported packages and modules: MongoDB, JSON, and Mongoose
-    - Other features that depend on this feature: None
-    - Implementation status: Server side is fully implemented
-    - Test description: Once inside the server folder run `npm start` in one terminal and `npm test` in another terminal. The test are numbered. This features tests are 5 - 8 
-        - Working test: If given highly specific ingredients return a recipe
-            - Location: Pass 6
-            - Test code status: Working properly
-            - Expected output: Specific recipe
-        - Failure test: If given invalid ingredients don't return any recipes 
-            - Location: Fail 5 
-            - Test code status: Working properly
-            - Expected output: 'No recipes match the ingredients battery,plutonium.'
-
-### Feature Descriptions Prompt
-
-- [ ] For each feature implemented briefly describe the following:
-    - name of the feature
-    - A one or two sentence description of the feature. You may refer to (and possibly update) a section of the proposal for this component.
-    - A brief description of the implementation strategy for the feature, including tools and imported packages and modules used
-    - A statement of which other features or project modules (storage, etc) this feature uses or depends on.
-    - A brief indication of the state of the implementation for the feature. Is it complete, how much is working?
-    - A description of how to test the feature. Test code should be provided to test both working and failure modes of the feature from the client-side. Also indicate whether the test code is working properly and what the marker should see upon running the test code. You are encouraged to use a test framework (Mocha) for this part.
+|Feature name     |Description |Implementation strategy | Packages and modules |   Other feature(s) dependencies  | Implementation status |
+|---------------------------------|------------------------|----------------------|----------------------------------|-----------------------|--|
+| Find recipe by ingredient | Allows users to search for recipes that contain a list of ingredients. | The function uses the `find()` method with a `$text` search on the Recipe collection to find recipes that contain all of the specified ingredients. The search results are sorted using the `$meta` operator with `textScore`. The feature limits the results to a maximum of 200 recipes and returns a message if there are no matches. The results are sorted by `textScore`, which is a MongoDB feature that ranks results by relevance.|MongoDB, JSON|This feature depends on the Recipe model and Mongo database.|Server side is fully implemented|
+|Find recipe by type|This feature allows the user to search for recipes that match a given type of dish, such as beef, chicken, etc.|The implementation strategy involves searching the Recipe collection for recipes that match the dish. The search is based on a regular expression that matches any part of the ingredients field that contains the given type of dish. The search results are then returned as a JSON response.|MongoDB, JSON|This feature depends on the Recipe model and Mongo database.|Server side is fully implemented|
+|Create new recipe |This feature allows users to create a new recipe and save it to the database. The user must provide a name, summary, ingredients, and directions for the recipe. Other optional fields include url, category, author, ratings, reviews, and nutrition information.|If all required fields are present, it creates a new recipe object in the database using the "create" method of the Recipe model. The updated recipe object is then saved to the database using the save() function. |MongoDB, JSON|This feature depends on the Recipe model and Mongo database.|Server side is fully implemented|
+|Update recipe|This feature allows the user to update a recipe's ingredients or directions.|This feature uses the Mongoose package to find the recipe in the database and update the recipe object with new ingredient and direction values. The updated recipe object is then saved to the database using the save() function.|MongoDB, JSON|This feature depends on the Recipe model and Mongo database.|Server side is fully implemented|
+|Delete recipe |This feature allows users to delete a recipe from the database by specifying the name of the recipe.|If the recipe name is present, the function uses the Mongoose findOne() method to find the recipe in the database based on its name. If the recipe is not found, a message indicating that there is no matching recipe is sent back to the user. If the recipe is found, the function uses the deleteOne() method to remove it from the database. Finally, a message confirming that the recipe has been deleted is sent back to the user.|MongoDB, JSON|This feature depends on the Recipe model and Mongo database.|Server side is fully implemented|
 
 ### Attribution
 The following resources were used to help with the development of this project:
