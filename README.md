@@ -1,4 +1,4 @@
-# Project Part 1, CS3100 W2023
+# Project Part 1 & 2, CS3100 W2023
 
 ### Files
 - **proposal.md** contains the project proposal (to be submitted for grading). If you encounter any issues viewing this file try using the vscode extension *Markdown Preview Enhanced*
@@ -17,23 +17,34 @@
 
 ### Running the project
 
-- Upload the database to the local server using MongoDB Compass: 
+- First, clone the repository to your local machine.
+- Second, install the dependencies with `npm install`
+- Third, create a .env file in the server directory and add the following lines:
+    - `DB_USERNAME=marker`
+    - `DB_PASSWORD=fryqw1O0IaeECj4v`
+    - `DATABASE_URI= mongodb+srv://marker:fryqw1O0IaeECj4v@cluster0.nat73ng.mongodb.net/recipesData?retryWrites=true&w=majority`
+    - `ACCESS_TOKEN_SECRET= 5e76bee04cf3b88d7e74efb13dfac69a5ef14ef94efc95b592e3321b9895981bb09708f7025b6c488d4b5d359bbac6b5298e2b5a4b516ab7742598c4774257c4`
+    - `REFRESH_TOKEN_SECRET= 6db576392077bb06ddfed8233be5d337599fab6199d3bb66bbcb8a5c777dd3f601b407a320ddd176b4bf309492274563f62aa1d26cddca0cded397591fe52019`
+<br>
+- It should look like this: <br>
 
-<img align="left" src="images\MongoDB_upload.png" alt="Database upload" width="958" height="522">
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<img align="left" src="images\.env.png" alt="Database upload" width="950" height="300">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-- Use the file *recipie.json* located in the *data* folder.
-- Note that this import gives the database name recipe and the collection name allrecipe
-
-- Install the dependencies 
-`npm install dependencies`
-
-- Run the server: 
+- Fourth, open a terminal in the server directory and run the server with: 
 `npm start`  
 
-- Run a variety of Mocha tests for the 6 features implemented with: 
-`npm test`   
-
+- Next, open another terminal to run a variety of Mocha tests with the command `npm test` for the following features implemented:
+    - Sign-up/register a new user
+    - Login a user
+    - Create a new recipe
+    - Amend an existing recipe
+    - Delete a recipe
+    - Find a single recipe by name
+    - Find recipes by list of ingredients
+    - Find recipes by type of dish, i.e. beef, chicken, etc.
+<br><br >
+- To shut down the server, press `ctrl + c` in the terminal where the server is running.
 ### Implementation description 
 
 ### Root
