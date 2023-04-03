@@ -22,3 +22,6 @@ router.route('/findByIngredients')
 router.route('/findByType')
     // .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor, ROLES_LIST.User), recipesController.findRecipeByType);
     .get(recipesController.findRecipeByType);
+
+router.route('/randomGenerator')
+    .get(recipesController.randomGenerator);

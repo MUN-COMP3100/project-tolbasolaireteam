@@ -1,3 +1,4 @@
+import { shuffleArray } from '../config/shuffleArray.mjs';
 import { Recipe } from '../model/Recipe.mjs';
 
 /**
@@ -10,8 +11,8 @@ import { Recipe } from '../model/Recipe.mjs';
  * @returns  
  */
 export const findRecipeByTime = async (req, res) => {   
-    // if (!req?.query?.total) return res.status(400).json({ 'message': 'Time required.' });
-    if (!req?.query?.total) return res.json({ 'message': 'Time required.' });
+    if (!req?.query?.total) return res.status(400).json({ 'message': 'Time required.' });
+    // if (!req?.query?.total) return res.json({ 'message': 'Time required.' });
     console.log('here')
     const result = await Recipe.find(
         { $text: { $search: req.query.total.join(' ') } },
@@ -36,18 +37,18 @@ export const findRecipeByTime = async (req, res) => {
  * @returns  
  */
 export const findRecipeByIngredient = async (req, res) => {   
-    // if (!req?.query?.ingredients) return res.status(400).json({ 'message': 'Ingredients required.' });
-    if (!req?.query?.ingredients) return res.json({ 'message': 'Ingredients required.' });
+    if (!req?.query?.ingredients) return res.status(400).json({ 'message': 'Ingredients required.' });
+    // if (!req?.query?.ingredients) return res.json({ 'message': 'Ingredients required.' });
 
     const result = await Recipe.find(
         { $text: { $search: req.query.ingredients.join(' ') } },
         { score: { $meta: "textScore" } },
     ).sort(
             { score: { $meta: "textScore"}}
-    ).limit(200).exec();
+    ).limit(1000).exec();
     if (result.length === 0) {
-        // return res.status(204).json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
-        return res.json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
+        return res.status(204).json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
+        // return res.json({ "message": `No recipes match the ingredients ${req.query.ingredients}.` });
     }
     res.json(result);
 }
@@ -62,9 +63,66 @@ export const findRecipeByType = async (req, res) => {
     if (!req?.query?.type) return res.json({ 'message': 'Type required.' });
     const result = await Recipe.find({ingredients: {$regex: req.query.type}}).exec();
     if (result.length === 0) {
-        return res.json({ "message": `No recipes match the type ${req.query.type}.` });
+        return res.status(204).json({ "message": `No recipes match the type ${req.query.type}.` });
     }
     res.json(result);
+}
+
+/**
+ * 
+ */
+export const randomGenerator = async (req, res) => {
+    let meals = [];
+    const numOfBeef = parseInt(req.query.beef);
+    const numOfChicken = parseInt(req.query.chicken);
+    const numOfPork = parseInt(req.query.pork);
+    let beefResult, chickenResult, porkResult;
+
+    if (numOfBeef > 0) {
+        beefResult = await Recipe.find({ingredients: {$regex: 'beef'}}).exec();
+    }
+    if (numOfChicken > 0) {
+        chickenResult = await Recipe.find({ingredients: {$regex: 'chicken'}}).exec();
+    }
+    if (numOfPork > 0) {
+        porkResult = await Recipe.find({ingredients: {$regex: 'pork'}}).exec();
+    }
+    
+    if (beefResult) {
+        for (let i = 0; i < numOfBeef; i++) {
+            let meal = beefResult[Math.floor(Math.random() * beefResult.length)];
+            // if the meal is already in the array, then get another one
+            while (meals.includes(meal)) {
+                meal = beefResult[Math.floor(Math.random() * beefResult.length)];
+            }
+            meals.push(meal);
+        }
+    }
+
+    if (chickenResult) {
+        for (let i = 0; i < numOfChicken; i++) {
+            let meal = chickenResult[Math.floor(Math.random() * chickenResult.length)];
+            // if the meal is already in the array, then get another one
+            while (meals.includes(meal)) {
+                meal = chickenResult[Math.floor(Math.random() * chickenResult.length)];
+            }
+            meals.push(meal);
+        }
+    }
+
+    if (porkResult) {
+        for (let i = 0; i < numOfPork; i++) {
+            let meal = porkResult[Math.floor(Math.random() * porkResult.length)];
+            // if the meal is already in the array, then get another one
+            while (meals.includes(meal)) {
+                meal = porkResult[Math.floor(Math.random() * porkResult.length)];
+            }
+            meals.push(meal);
+        }
+    }
+
+    const shuffledMeals = shuffleArray(meals);
+    res.json(shuffledMeals);
 }
 
 /**
@@ -88,8 +146,8 @@ export const getAllRecipes = async (req, res) => {
  */
 export const createNewRecipe = async (req, res) => {
     if (!req?.body?.name || !req?.body?.summary || !req?.body?.ingredients || !req?.body?.directions) {
-        // return res.status(400).json({ 'message': 'Recipe name, ingredients, instructions, and a summary are required.' });
-        return res.json({ 'message': 'Recipe name, ingredients, directions, and a summary are required.' });
+        return res.status(400).json({ 'message': 'Recipe name, ingredients, instructions, and a summary are required.' });
+        // return res.json({ 'message': 'Recipe name, ingredients, directions, and a summary are required.' });
     }
 
     try {
@@ -144,8 +202,8 @@ export const createNewRecipe = async (req, res) => {
             omega_6_fatty_acid_g: req.body.omega_6_fatty_acid_g
         });
         console.log(result);
-        // res.status(201).json(result);
-        res.json(result);
+        res.status(201).json(result);
+        // res.json(result);
     } catch (err) {
         console.error(err);
     }
@@ -159,20 +217,20 @@ export const createNewRecipe = async (req, res) => {
  */
 export const updateRecipe = async (req, res) => {
     if (!req?.body?.name) {
-        // return res.status(400).json({ 'message': 'Recipe ID parameter is required.' });
-        return res.json({ 'message': 'Recipe name is required.' });
+        return res.status(400).json({ 'message': 'Recipe ID parameter is required.' });
+        // return res.json({ 'message': 'Recipe name is required.' });
     }
 
     const recipe = await Recipe.findOne({ name: req.body.name }).exec();
     if (!recipe) {
-        // return res.status(204).json({ "message": `No recipe matches the name ${req.body.name}.` });
-        return res.json({ "message": `No recipe matches the name ${req.body.name}.` });
+        return res.status(204).json({ "message": `No recipe matches the name ${req.body.name}.` });
+        // return res.json({ "message": `No recipe matches the name ${req.body.name}.` });
     }
     if (req.body?.ingredients) Recipe.ingredients = req.body.ingredients;
     if (req.body?.directions) Recipe.directions = req.body.directions;
     const result = await recipe.save();
     // res.json(result);
-    res.json({ "message": `Recipe ${req.body.name} updated.` });
+    res.status(200).json({ "message": `Recipe ${req.body.name} updated.` });
 }
 
 /**
@@ -182,16 +240,16 @@ export const updateRecipe = async (req, res) => {
  * @returns 
  */
 export const deleteRecipe = async (req, res) => {
-    // if (!req?.body?.id) return res.status(400).json({ 'message': 'Recipe ID required.' });
-    if (!req?.body?.name) return res.json({ 'message': 'Recipe name is required.' });
+    if (!req?.body?.id) return res.status(400).json({ 'message': 'Recipe ID required.' });
+    // if (!req?.body?.name) return res.json({ 'message': 'Recipe name is required.' });
 
     const recipe = await Recipe.findOne({ name: req.body.name }).exec();
     if (!recipe) {
-        // return res.status(204).json({ "message": `No recipe matches ID ${req.body.id}.` });
-        return res.json({ "message": `No recipe matches the name ${req.body.name}.` });
+        return res.status(204).json({ "message": `No recipe matches ID ${req.body.id}.` });
+        // return res.json({ "message": `No recipe matches the name ${req.body.name}.` });
     }
     const result = await recipe.deleteOne(); //{ _id: req.body.id }
-    res.json({ "message": `Recipe ${req.body.name} deleted.` });
+    res.status(200).json({ "message": `Recipe ${req.body.name} deleted.` });
 }
 
 /**
@@ -201,14 +259,14 @@ export const deleteRecipe = async (req, res) => {
  * @returns 
  */
 export const getRecipe = async (req, res) => {
-    // if (!req?.params?.id) return res.status(400).json({ 'message': 'Recipe ID required.' });
-    if (!req?.query?.name) return res.json({ 'message': 'Recipe name is required.' });
+    if (!req?.params?.id) return res.status(400).json({ 'message': 'Recipe ID required.' });
+    // if (!req?.query?.name) return res.json({ 'message': 'Recipe name is required.' });
     
     const recipe = await Recipe.findOne({ name: req.query.name }).exec();
     if (!recipe) {
-        // return res.status(204).json({ "message": `No recipe matches ID ${req.params.id}.` });
-        return res.json({ "message": `No recipe matches the name ${req.query.name}.` });
+        return res.status(204).json({ "message": `No recipe matches ID ${req.params.id}.` });
+        // return res.json({ "message": `No recipe matches the name ${req.query.name}.` });
     }
-    res.json(recipe);
+    res.status(200).json(recipe);
 
 }
