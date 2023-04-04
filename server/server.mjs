@@ -50,7 +50,7 @@ app.use('/auth', (await import('./routes/auth.mjs')).router);
 app.use('/refresh', (await import('./routes/refresh.mjs')).router);
 app.use('/logout', (await import('./routes/logout.mjs')).router);
 
-// app.use(verifyJWT); <---------------*************removed for testing purposes
+app.use(verifyJWT); 
 app.use('/recipes', (await import('./routes/api/recipes.mjs')).router);
 app.use('/users', (await import('./routes/api/users.mjs')).router);
 

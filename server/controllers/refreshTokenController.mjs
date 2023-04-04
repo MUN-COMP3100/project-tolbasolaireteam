@@ -5,14 +5,13 @@ export const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies;
     if (!cookies?.jwt) {
         console.log('No refresh token');
-        // return res.sendStatus(401);
-        return res.json({ 'message': 'No refresh token.' });
+        return res.status(401).json({ 'message': 'No refresh token.' });
     }
     const refreshToken = cookies.jwt;
 
     const foundUser = await User.findOne({ refreshToken }).exec();
-    // if (!foundUser) return res.sendStatus(403); //Forbidden 
-    if (!foundUser) return res.json({ 'message': 'User not found.' });
+    if (!foundUser) return res.status(403).json({ 'message': 'User not found.'}); //Forbidden 
+
     // evaluate jwt 
     jwt.verify(
         refreshToken,
@@ -28,7 +27,7 @@ export const handleRefreshToken = async (req, res) => {
                     }
                 },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '15m' }
+                { expiresIn: '5m' }
             );
             res.json({ roles, accessToken })
         }
