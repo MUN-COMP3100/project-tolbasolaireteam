@@ -97,10 +97,51 @@ button {
   height: auto;
 }
 
+/* MEAL PLANNER */
+.mealPlanner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "header header header"
+    "button . ."
+    "mealPlan mealPlan groceryList";
+  justify-content: stretch;
+  align-items: stretch;
+  border: 1px solid black;
+}
+
+.groceryList {
+  grid-area: groceryList;
+  width: auto;
+  min-height: 100vh;
+  gap: 1em;
+  padding: 0.5em;
+  border: 1px solid black;
+}
+
+.lineItem {
+  list-style-type: none;
+}
+
+.clearMeals {
+  grid-area: button;
+  width: 120px;
+  height: 80px;
+  
+  border: 1px solid black;
+}
+.mealOptions {
+  grid-area: header;
+  width: auto;
+  border: 1px solid black;
+}
+
 table.mealPlan {
+  grid-area: mealPlan;
   margin: 2rem ;
   border: 1px solid black;
-  width: 75%;
+  width: auto;
 }
 
 tr {
