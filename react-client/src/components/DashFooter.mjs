@@ -29,9 +29,7 @@ const DashFooter = () => {
         )
     }
 
-
-
-    const content = (
+    return (
         <footer className="dash-footer">
             <button
                 className="dash-footer__button icon-button"
@@ -45,8 +43,6 @@ const DashFooter = () => {
             <p>Current User: {`${auth.user}`}</p>
         </footer>
     )
-
-    return content
 }
 
 export default DashFooter   

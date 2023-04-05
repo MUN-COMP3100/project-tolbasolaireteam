@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";  
 
 const DashHeader = () => {
-    const content = (
+
+    return (
         <header className="dash-header">
             <div className="dash-header__container">
                 <Link to="/dash">
@@ -13,8 +14,6 @@ const DashHeader = () => {
             </div>
         </header>
     )
-
-    return content
 }
 
 export default DashHeader
