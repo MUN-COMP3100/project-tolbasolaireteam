@@ -9,13 +9,13 @@ const Welcome = () => {
     return (
         <section className="welcome">
 
-            <p>{today}</p>
+            <p className='welcomeItem-date'>{today}</p>
 
-            <h1>Welcome!</h1>
+            <h1 className='welcomeItem-h'>Welcome!</h1>
 
-            <p>Thank you for registering with the Ultimate Meal Planner!</p>
-            <p><Link to="/dash/recipes">View Recipes</Link></p>
-            <p><Link to="/dash/meal_planner">View Planner</Link></p>
+            <p className='welcomeItem-p1'>Thank you for registering with the Ultimate Meal Planner!</p>
+            <p className='welcomeItem-p2'><Link to="/dash/recipes">View Recipes</Link></p>
+            <p className='welcomeItem-p3'><Link to="/dash/meal_planner">View Planner</Link></p>
 
         </section>
     )

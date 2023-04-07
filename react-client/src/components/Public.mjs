@@ -18,6 +18,7 @@ const Public = () => {
             <footer className="publicItem">
                 <p> &copy; Copyright 2023</p>
             </footer>
+            
         </section>
     )
 }
