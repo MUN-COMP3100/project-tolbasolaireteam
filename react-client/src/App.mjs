@@ -11,6 +11,7 @@ import RequireAuth from './components/RequireAuth.mjs';
 import CreateRecipe from './features/recipes/CreateRecipe.mjs';
 import AmendRecipe from './features/recipes/AmendRecipe.mjs';
 
+import SearchRecipe from './features/recipes/SearchRecipe.mjs';
 function App() {
   return (
     <Routes>
@@ -18,6 +19,8 @@ function App() {
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+
+        <Route path="search" element={<SearchRecipe />} />
 
         <Route element={<RequireAuth />}>
           <Route path="dash" element={<DashLayout />}> {/* start of dash */}
