@@ -14,6 +14,11 @@ const Public = () => {
                 <p> You can also view your meal plan for the week and see what ingredients you need to buy. </p>
                 <p> You can also view your pantry and see what ingredients you have. </p>
                 <p> You can also view your recipes and see what ingredients you need to buy. </p>
+                <Link to="/search">
+                    <button>
+                        Search
+                    </button>
+                </Link>
             </main>
             <footer className="publicItem">
                 <p> &copy; Copyright 2023</p>
