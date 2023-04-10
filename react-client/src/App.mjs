@@ -9,6 +9,7 @@ import MealPlanner from './features/recipes/MealPlanner.mjs';
 import Register from './features/Register/Register.mjs';
 import RequireAuth from './components/RequireAuth.mjs';
 import CreateRecipe from './features/recipes/CreateRecipe.mjs';
+import AmendRecipe from './features/recipes/AmendRecipe.mjs';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="recipes">
               <Route index element={<RecipesMenu />} />
               <Route path="create_recipe" element={<CreateRecipe />} />
+              <Route path="amend_recipe" element={<AmendRecipe />} />
             </Route>
 
             <Route path="meal_planner">

@@ -217,9 +217,9 @@ export const createNewRecipe = async (req, res) => {
  * @returns 
  */
 export const updateRecipe = async (req, res) => {
-    if (!req?.body?.name) {
-        return res.status(400).json({ 'message': 'Recipe ID parameter is required.' });
-        // return res.json({ 'message': 'Recipe name is required.' });
+    if (!req?.body?.name || !req?.body?.summary || !req?.body?.ingredients || !req?.body?.directions) {
+        return res.status(400).json({ 'message': 'Recipe name, ingredients, directions, and a summary are required.' });
+        
     }
 
     const recipe = await Recipe.findOne({ name: req.body.name }).exec();
@@ -227,8 +227,13 @@ export const updateRecipe = async (req, res) => {
         return res.status(204).json({ "message": `No recipe matches the name ${req.body.name}.` });
         // return res.json({ "message": `No recipe matches the name ${req.body.name}.` });
     }
-    if (req.body?.ingredients) Recipe.ingredients = req.body.ingredients;
-    if (req.body?.directions) Recipe.directions = req.body.directions;
+    recipe.name = req.body.name;
+    recipe.ingredients = req.body.ingredients;
+    recipe.directions = req.body.directions;
+    recipe.summary = req.body.summary;
+    if (req.body.url) recipe.url = req.body.url;
+    if (req.body.category) recipe.category = req.body.category;
+    if (req.body.author) recipe.author = req.body.author;
     const result = await recipe.save();
     // res.json(result);
     res.status(200).json({ "message": `Recipe ${req.body.name} updated.` });
@@ -260,7 +265,8 @@ export const deleteRecipe = async (req, res) => {
  * @returns 
  */
 export const getRecipe = async (req, res) => {
-    if (!req?.params?.id) return res.status(400).json({ 'message': 'Recipe ID required.' });
+    console.log('here')
+    if (!req?.query?.name) return res.status(400).json({ 'message': 'Recipe name required.' });
     // if (!req?.query?.name) return res.json({ 'message': 'Recipe name is required.' });
     
     const recipe = await Recipe.findOne({ name: req.query.name }).exec();
