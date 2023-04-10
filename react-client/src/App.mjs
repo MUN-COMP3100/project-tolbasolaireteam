@@ -4,10 +4,11 @@ import Public from './components/Public.mjs';
 import Login from './features/auth/Login.mjs';
 import DashLayout from './components/DashLayout.mjs';
 import Welcome from './features/auth/Welcome.mjs';
-import RecipesList from './features/recipes/RecipesList.mjs';
+import RecipesMenu from './features/recipes/RecipesMenu.mjs';
 import MealPlanner from './features/recipes/MealPlanner.mjs';
 import Register from './features/Register/Register.mjs';
 import RequireAuth from './components/RequireAuth.mjs';
+import CreateRecipe from './features/recipes/CreateRecipe.mjs';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
             <Route index element={<Welcome />} />
 
             <Route path="recipes">
-              <Route index element={<RecipesList />} />
+              <Route index element={<RecipesMenu />} />
+              <Route path="create_recipe" element={<CreateRecipe />} />
             </Route>
 
             <Route path="meal_planner">

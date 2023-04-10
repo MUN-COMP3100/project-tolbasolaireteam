@@ -14,8 +14,8 @@ const Welcome = () => {
             <h1 className='welcomeItem-h'>Welcome!</h1>
 
             <p className='welcomeItem-p1'>Thank you for registering with the Ultimate Meal Planner!</p>
-            <p className='welcomeItem-p2'><Link to="/dash/recipes">View Recipes</Link></p>
-            <p className='welcomeItem-p3'><Link to="/dash/meal_planner">View Planner</Link></p>
+            <p className='welcomeItem-p2'><Link to="/dash/recipes">Recipes Menu</Link></p>
+            <p className='welcomeItem-p3'><Link to="/dash/meal_planner">Random Meal Generator</Link></p>
 
         </section>
     )

@@ -145,11 +145,12 @@ export const getAllRecipes = async (req, res) => {
  * @returns 
  */
 export const createNewRecipe = async (req, res) => {
+    console.log(req.body)
     if (!req?.body?.name || !req?.body?.summary || !req?.body?.ingredients || !req?.body?.directions) {
+        console.log('here1')
         return res.status(400).json({ 'message': 'Recipe name, ingredients, instructions, and a summary are required.' });
         // return res.json({ 'message': 'Recipe name, ingredients, directions, and a summary are required.' });
     }
-
     try {
         const result = await Recipe.create({
             name: req.body.name,
@@ -202,7 +203,7 @@ export const createNewRecipe = async (req, res) => {
             omega_6_fatty_acid_g: req.body.omega_6_fatty_acid_g
         });
         console.log(result);
-        res.status(201).json(result);
+        res.status(201).json({'message': 'Recipe added successfully.'});
         // res.json(result);
     } catch (err) {
         console.error(err);

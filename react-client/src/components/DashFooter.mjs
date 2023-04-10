@@ -13,7 +13,7 @@ const DashFooter = () => {
 
     const handleLogout = async () => {
         setAuth({})
-        navigate('/login')
+        navigate('/')
     }
 
     let goHomeButton = null
