@@ -56,7 +56,7 @@ const CreateRecipe = () => {
     useEffect(() => {
         setTimeout(() => {
         setMsg('');
-        }, 12000);
+        }, 20000);
     }, [recipeName, recipeSummary, recipeIngredients, recipeDirections]);
 
 
