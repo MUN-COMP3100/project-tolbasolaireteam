@@ -147,7 +147,6 @@ export const getAllRecipes = async (req, res) => {
 export const createNewRecipe = async (req, res) => {
     console.log(req.body)
     if (!req?.body?.name || !req?.body?.summary || !req?.body?.ingredients || !req?.body?.directions) {
-        console.log('here1')
         return res.status(400).json({ 'message': 'Recipe name, ingredients, instructions, and a summary are required.' });
         // return res.json({ 'message': 'Recipe name, ingredients, directions, and a summary are required.' });
     }
@@ -204,7 +203,6 @@ export const createNewRecipe = async (req, res) => {
         });
         console.log(result);
         res.status(201).json({'message': 'Recipe added successfully.'});
-        // res.json(result);
     } catch (err) {
         console.error(err);
     }
@@ -225,7 +223,6 @@ export const updateRecipe = async (req, res) => {
     const recipe = await Recipe.findOne({ name: req.body.name }).exec();
     if (!recipe) {
         return res.status(204).json({ "message": `No recipe matches the name ${req.body.name}.` });
-        // return res.json({ "message": `No recipe matches the name ${req.body.name}.` });
     }
     recipe.name = req.body.name;
     recipe.ingredients = req.body.ingredients;
@@ -252,7 +249,6 @@ export const deleteRecipe = async (req, res) => {
     const recipe = await Recipe.findOne({ name: req.body.name }).exec();
     if (!recipe) {
         return res.status(204).json({ "message": `No recipe matches ID ${req.body.id}.` });
-        // return res.json({ "message": `No recipe matches the name ${req.body.name}.` });
     }
     const result = await recipe.deleteOne(); //{ _id: req.body.id }
     res.status(200).json({ "message": `Recipe ${req.body.name} deleted.` });
@@ -265,16 +261,13 @@ export const deleteRecipe = async (req, res) => {
  * @returns 
  */
 export const getRecipe = async (req, res) => {
-    console.log('here')
     if (!req?.query?.name) {
-        console.log('here2')
         return res.status(400).json({ 'message': 'Recipe name required.' });
     }
     
     
     const recipe = await Recipe.findOne({ name: req.query.name }).exec();
     if (!recipe) {
-        console.log('here3')
         return res.status(204).json({ message: `No recipe matches the name ${req.query.name}.` });
     }
     res.status(200).json(recipe);
