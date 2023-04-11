@@ -25,15 +25,12 @@ const SearchRecipe = () => {
     const handleFindSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log(recipeToFind);
             const response = await privateAxiosInstance.get(`/recipes/?name=${recipeToFind}`);
-            console.log(response.data);
 
             setRecipeSummary(response.data.summary);
             setRecipeIngredients(response.data.ingredients);
             setRecipeDirections(response.data.directions);
             setRecipeCategory(response.data.category);
-
             setRecipeName(response.data.name);
             setRecipeAuthor(response.data.author);
             setRecipeTotalTime(response.data.total);
@@ -68,6 +65,7 @@ const SearchRecipe = () => {
                 <button type="submit">Find Recipe</button>
             </form>
             {recipeName && <RecipeCard 
+            recipeSummary={recipeSummary}
             recipeName={recipeName} 
             recipeAuthor={recipeAuthor} 
             recipeTotal={recipeTotal} 

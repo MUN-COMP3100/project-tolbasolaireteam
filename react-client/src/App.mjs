@@ -10,8 +10,8 @@ import Register from './features/Register/Register.mjs';
 import RequireAuth from './components/RequireAuth.mjs';
 import CreateRecipe from './features/recipes/CreateRecipe.mjs';
 import AmendRecipe from './features/recipes/AmendRecipe.mjs';
-
 import SearchRecipe from './features/recipes/SearchRecipe.mjs';
+
 function App() {
   return (
     <Routes>
@@ -19,8 +19,6 @@ function App() {
         <Route index element={<Public />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-
-        <Route path="search" element={<SearchRecipe />} />
 
         <Route element={<RequireAuth />}>
           <Route path="dash" element={<DashLayout />}> {/* start of dash */}
@@ -31,6 +29,7 @@ function App() {
               <Route index element={<RecipesMenu />} />
               <Route path="create_recipe" element={<CreateRecipe />} />
               <Route path="amend_recipe" element={<AmendRecipe />} />
+              <Route path="search" element={<SearchRecipe />} />
             </Route>
 
             <Route path="meal_planner">

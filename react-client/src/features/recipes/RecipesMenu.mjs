@@ -7,6 +7,7 @@ const RecipesMenu = () => {
 
             <p className='recipesLink'><Link to="/dash/recipes/create_recipe">Create Recipe</Link></p>
             <p className='recipesLink'><Link to="/dash/recipes/amend_recipe">Amend Recipe</Link></p>
+            <p className='recipesLink'><Link to="/dash/recipes/search">Search For Recipe by Name</Link></p>
         </section>
     )
 }
