@@ -266,13 +266,16 @@ export const deleteRecipe = async (req, res) => {
  */
 export const getRecipe = async (req, res) => {
     console.log('here')
-    if (!req?.query?.name) return res.status(400).json({ 'message': 'Recipe name required.' });
-    // if (!req?.query?.name) return res.json({ 'message': 'Recipe name is required.' });
+    if (!req?.query?.name) {
+        console.log('here2')
+        return res.status(400).json({ 'message': 'Recipe name required.' });
+    }
+    
     
     const recipe = await Recipe.findOne({ name: req.query.name }).exec();
     if (!recipe) {
-        return res.status(204).json({ "message": `No recipe matches ID ${req.params.id}.` });
-        // return res.json({ "message": `No recipe matches the name ${req.query.name}.` });
+        console.log('here3')
+        return res.status(204).json({ message: `No recipe matches the name ${req.query.name}.` });
     }
     res.status(200).json(recipe);
 

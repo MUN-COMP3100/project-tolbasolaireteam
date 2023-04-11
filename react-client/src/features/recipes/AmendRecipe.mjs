@@ -4,6 +4,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate.mjs';
 const AmendRecipe = () => {
     const recipeNameRef = useRef();
     const msgRef = useRef();
+    const findMsgRef = useRef();
 
     const [recipeToFind, setRecipeToFind] = useState('');
 
@@ -16,14 +17,18 @@ const AmendRecipe = () => {
     const [recipeAuthor, setRecipeAuthor] = useState('');
 
     const [msg, setMsg] = useState('');
+    const [findMsg, setFindMsg] = useState('');
 
     const privateAxiosInstance = useAxiosPrivate();
 
     const handleFindSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log(recipeToFind);
             const response = await privateAxiosInstance.get(`/recipes/?name=${recipeToFind}`);
+            if (response.status === 204) {
+                setFindMsg("No recipe found with that name.");
+                return;
+            }
             setRecipeName(response.data.name);
             setRecipeSummary(response.data.summary);
             setRecipeIngredients(response.data.ingredients);
@@ -33,7 +38,7 @@ const AmendRecipe = () => {
             setRecipeAuthor(response.data.author);
         } catch (err) {
             console.log(err);
-            setMsg(err.response.message);
+            setFindMsg(err.response.message);
         }
     }
     
@@ -51,15 +56,37 @@ const AmendRecipe = () => {
         try {
             const response = await privateAxiosInstance.put('/recipes', recipe);
             setMsg(response.data.message);
+            clearFields();
         } catch (err) {
             console.log(err);
             setMsg(err.response.message);
         }
     }
 
+    const clearFields = () => {
+        setRecipeToFind('');
+        setRecipeName('');
+        setRecipeSummary('');
+        setRecipeIngredients('');
+        setRecipeDirections('');
+        setRecipeURL('');
+        setRecipeCategory('');
+        setRecipeAuthor('');
+    }
+
     useEffect(() => {
         recipeNameRef.current.focus();
     }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setMsg('');
+            }, 20000);
+    }, [recipeName, recipeSummary, recipeIngredients, recipeDirections]);
+
+    useEffect(() => {
+        setFindMsg('');
+    }, [recipeToFind]);
 
     return (  
         <section className="amendRecipe"> 
@@ -78,6 +105,7 @@ const AmendRecipe = () => {
                     required
                 />
                 <button type="submit">Find Recipe</button>
+                <p ref={findMsgRef} className={findMsg ? "errmsg" : "offscreen"} aria-live="assertive">{findMsg}</p>
             </form>
             <hr/>
             <h2>Amend the Recipe</h2>
@@ -141,6 +169,7 @@ const AmendRecipe = () => {
                 />
                 <button type="submit">Amend Recipe</button>
             </form>
+            <p ref={msgRef} className={msg ? "errmsg" : "offscreen"} aria-live="assertive">{msg}</p>
         </section>
     ) 
 }
