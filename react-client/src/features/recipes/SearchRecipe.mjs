@@ -1,78 +1,81 @@
 import { useRef, useState, useEffect } from "react";
 import useAxiosPrivate from '../../hooks/useAxiosPrivate.mjs';
+import RecipeCard from './RecipeCard.mjs';
 
 const SearchRecipe = () => {
     const recipeNameRef = useRef();
     const msgRef = useRef();
 
+    const [recipeToFind, setRecipeToFind] = useState('');
+
     const [recipeName, setRecipeName] = useState('');
     const [recipeSummary, setRecipeSummary] = useState('');
     const [recipeIngredients, setRecipeIngredients] = useState('');
     const [recipeDirections, setRecipeDirections] = useState('');
+    const [recipeURL, setRecipeURL] = useState('');
+    const [recipeCategory, setRecipeCategory] = useState('');
+    const [recipeAuthor, setRecipeAuthor] = useState('');
+    const [recipeTotal, setRecipeTotalTime] = useState('');
+    const [recipeServings, setRecipeServings] = useState('');
+
     const [msg, setMsg] = useState('');
+
     const privateAxiosInstance = useAxiosPrivate();
 
-    const clearFields = () => {
-        setRecipeName('');
-        setRecipeSummary('');
-        setRecipeIngredients('');
-        setRecipeDirections('');
-    }
-
-    const handleSubmit = async (e) => {
+    const handleFindSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await privateAxiosInstance.get('/recipes',
-            {
-                params: {
-                    name: recipeName
-                }
-            });
-            console.log(response);
-            //setMsg(response.data.name);
-            clearFields();
+            console.log(recipeToFind);
+            const response = await privateAxiosInstance.get(`/recipes/?name=${recipeToFind}`);
+            console.log(response.data);
+
+            setRecipeSummary(response.data.summary);
+            setRecipeIngredients(response.data.ingredients);
+            setRecipeDirections(response.data.directions);
+            setRecipeCategory(response.data.category);
+
+            setRecipeName(response.data.name);
+            setRecipeAuthor(response.data.author);
+            setRecipeTotalTime(response.data.total);
+            setRecipeServings(response.data.servings);
+            setRecipeURL(response.data.url);
+
         } catch (err) {
             console.log(err);
             setMsg(err.response.message);
-        } 
-        
+        }
     }
 
     useEffect(() => {
         recipeNameRef.current.focus();
     }, []);
 
-    useEffect(() => {
-        setTimeout(() => {
-        setMsg('');
-        }, 12000);
-    }, [recipeName, recipeSummary, recipeIngredients, recipeDirections]);
-
-
-    return (
-        <section className="searchRecipe">
-            <h1>Search for Recipe</h1>
-            <form className="searchRecipeForm" onSubmit={handleSubmit}>
-                <label htmlFor="recipeName">Recipe Name</label>
+    return (  
+        <section className="searchRecipe"> 
+            <h1>Find a Recipe</h1>
+            
+            <form onSubmit={handleFindSubmit} className="searchRecipeForm">
+                <label htmlFor="recipeToFind">Recipe Name</label>
                 <input 
                     type="text" 
-                    id="recipeName"
-                    ref={recipeNameRef}
+                    ref = {recipeNameRef}
+                    id="recipeToFind" 
+                    name="recipeToFind" 
+                    value={recipeToFind} 
+                    onChange={(e) => setRecipeToFind(e.target.value)} 
                     required
-                    value={recipeName}
-                    onChange={(e) => setRecipeName(e.target.value)}
                 />
-                <button 
-                    type="submit"
-                    className="createRecipeButton"
-                    disabled={!recipeName}
-                >
-                    Search
-                </button>
+                <button type="submit">Find Recipe</button>
             </form>
-            <p ref={msgRef} className={msg ? "errmsg" : "offscreen"} aria-live="assertive">{msg}</p>
+            {recipeName && <RecipeCard 
+            recipeName={recipeName} 
+            recipeAuthor={recipeAuthor} 
+            recipeTotal={recipeTotal} 
+            recipeServings={recipeServings} 
+            recipeURL={recipeURL} 
+            />}
         </section>
-    )
+    ) 
 }
 
-export default SearchRecipe
+export default SearchRecipe  

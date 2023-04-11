@@ -36,7 +36,7 @@ const AmendRecipe = () => {
             setMsg(err.response.message);
         }
     }
-
+    
     const handleAmendSubmit = async (e) => {
         e.preventDefault();
         const recipe = {
