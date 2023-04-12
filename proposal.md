@@ -20,7 +20,7 @@ The website will be designed with a clean, intuitive, and user-friendly interfac
 To ensure scalability, the website will leverage cloud-based solutions to handle the large dataset and user traffic. Additionally, data privacy and security will be prioritized, and user data will be collected and stored with the utmost care and respect for privacy laws and regulations.
 
 **Conclusion**    
-In conclusion, the website that we propose will provide a convenient and efficient solution to the tedious task of meal planning, making life easier for users who would otherwise have to spend time coming up with meal plans and grocery lists. We look forward to working with you to bring this idea to life.
+In conclusion, the website that we propose will provide a convenient and efficient solution to the tedious task of meal planning, making life easier for users who would otherwise have to spend time coming up with meal plans and grocery lists. 
 
 ## PROJECT FEATURE TABLE
 
