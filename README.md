@@ -131,11 +131,12 @@ TODO put video link
 | Update Recipe|User can search for and update existing recipes|First the user searches for the recipe by name then can modify the recipe by filling out a the fields in a form. |Axios|None|Fully Implemented|User is presented with the name field to search for a recipe. Once found, the recipe fields must be filled. Lastly the amend recipe button must be pressed. |react-client\src\features\recipes\AmendRecipe.mjs  react-client\src\features\recipes\SearchRecipe.mjs |[Demonstration](env.txt)|
 | Find Recipe by Ingredient |User can search for a recipe by ingredients. They must be comma separated. |Once the name of the recipe field is filled the user can press the button to search for a recipe. If found it will display all the matching recipes. Otherwise an error message will be returned.|Axios|None|Fully Implemented|A field to enter the ingredients and a button to search.|     react-client\src\features\recipes\RecipeCard.mjs                               react-client\src\features\recipes\RecipeCard.css  react-client\src\features\recipes\SearchRecipeIngredients.mjs   |[Demonstration](env.txt)|
 
-Note in addition to the features listed here Grocery list, Find Recipe By Name, Random Meal Preferences have also been implemented.
+Note in addition to the features listed here Grocery list, Find Recipe By Name, Random Meal Preferences and Random Meal Generator have also been implemented.
 
 ### Attribution
 The following resources were used to help with the development of this project:
 - [Dave Grey's Express Tutorial](https://www.youtube.com/watch?v=JZXQ455OT3A&list=PL0Zuz27SZ-6PFkIxaJ6Xx_X46avTM1aYw&index=1)
+- [Dave Grey's React Tutorial](https://www.youtube.com/watch?v=TeeAp5zkYnI&list=PL0Zuz27SZ-6PrE9srvEn8nbhOOyxnWXfp)
 - [JavaScript Documentation](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)
 - Collaborative effort from Drew Griffiths and Brandon Hardatt
 - Worked on features together and communicated on Discord
