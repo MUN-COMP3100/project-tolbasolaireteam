@@ -11,6 +11,7 @@ import RequireAuth from './components/RequireAuth.mjs';
 import CreateRecipe from './features/recipes/CreateRecipe.mjs';
 import AmendRecipe from './features/recipes/AmendRecipe.mjs';
 import SearchRecipe from './features/recipes/SearchRecipe.mjs';
+import SearchRecipeIngredient from './features/recipes/SearchRecipeIngredient.mjs';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="create_recipe" element={<CreateRecipe />} />
               <Route path="amend_recipe" element={<AmendRecipe />} />
               <Route path="search" element={<SearchRecipe />} />
+              <Route path="search_ingredient" element={<SearchRecipeIngredient />} />
             </Route>
 
             <Route path="meal_planner">
