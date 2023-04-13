@@ -69,7 +69,7 @@ Note
 
 ### Testing the server
 
-**As mentioned by Dr. Brown in-class, the Mocha tests are no longer necessary as they have already been demonstrated in the video that the application's features are working properly. Furthermore, the server-side features have already been tested in part 2 of the assessment and have received full marks. Therefore, there is no need to include working Mocha tests in the submission.**
+*As mentioned by Dr. Brown in-class, the Mocha tests are no longer necessary as they have already been demonstrated in the video that the application's features are working properly. Furthermore, the server-side features have already been tested in part 2 of the assessment and have received full marks. Additionally, as we are now setting the status codes in the http responses it seems Mocha does not work well when seeing 400 level codes and shuts down. Therefore, there is no need to include working Mocha tests in the submission.*
 
 
 Each of the 6 server-side features implemented can be tested by:
